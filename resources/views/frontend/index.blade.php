@@ -22,12 +22,32 @@
     <!-- Main-Stylesheets -->
     <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
     <link rel="stylesheet" href="{{asset('style.css')}}">
+    <link rel="stylesheet" href="{{asset('fonts/font_pro.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
     <script src="{{asset('js/vendor/modernizr-2.8.3.min.js')}}"></script>
+
+    <style media="screen">
+      .fa-plane-alt{
+        color:#64b5f6;
+        font-size: 16px;
+      }
+
+      .fa-train{
+        font-size: 16px;
+        color:#fedd9d;
+      }
+
+      #home_page{
+        font-family: open sans;
+      }
+    </style>
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+
 	<script src="{{asset('js/vendor/jquery-1.12.4.min.js')}}"></script>
 	   <script type="text/javascript">
             $(document).ready(function(){
@@ -39,9 +59,14 @@
             },5000);
             });
         </script>
+
+        <style media="screen">
+
+        </style>
+
 </head>
 
-<body data-spy="scroll" data-target=".mainmenu-area">
+<body data-spy="sVcroll" data-target=".mainmenu-area">
     <!-- Preloader-content -->
     <div class="preloader">
         <span><i class="lnr lnr-sun"></i></span>
@@ -59,8 +84,8 @@
             </div>
             <div class="collapse navbar-collapse" id="primary_menu">
                 <ul class="nav navbar-nav mainmenu">
-                    <li class="active"><a href="#home_page">Home</a></li>
-                    <li><a href="#about_page">About</a></li>
+                    <li class="active"><i class="fal fa-plane-alt"></i><a href="#home_page">Pesawat</a></li>
+                    <li><i class="fal fa-train"></i><a href="#about_page">Kereta</a></li>
                     <li><a href="#features_page">Features</a></li>
                     <li><a href="#gallery_page">Gallery</a></li>
                     <li><a href="#price_page">Pricing</a></li>
@@ -79,19 +104,25 @@
     <header class="home-area overlay" id="home_page">
 
 
-		<div class="container">
-            <div class="row">
-                <div class="col-xs-12 hidden-sm col-md-8 col-md-offset-2">
-                    <figure class="mobile-image wow fadeInUp" data-wow-delay="0.2s">
-						<div class="panel panel-default">
-							<div class="panel panel-body">
-								<br><br><br><br><br><br><br><br><br>
-							</div>
-						</div>
-                    </figure>
+	  <div class="container">
+      <div class="row">
+        <div class="col-xs-12 hidden-sm col-md-8 col-md-offset-2">
+          <div class="shadow p-3 mb-5 bg-white rounded">
+           <figure class="mobile-image wow fadeInUp" data-wow-delay="0.2s">
+              <div class="panel panel-default">
+                <div class="panel panel-head".
+                  <h3 class="" style="color:black">Mau ke mana?</h3>
+
                 </div>
+  							<div class="panel panel-body">
+                  <br><br><br><br><br>
+  							</div>
+						  </div>
             </div>
+          </figure>
         </div>
+      </div>
+    </div>
     </header>
     <!-- Home-Area-End -->
     <!-- About-Area -->
