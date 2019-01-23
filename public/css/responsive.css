@@ -94,7 +94,9 @@
         background-image: none;
     }
     .mobile-image {
-        display: none !important;
+        display: block !important;
+        position: relative;
+        top: 230px;
     }
     .feature-area,
     .video-area,
@@ -143,8 +145,8 @@
         padding: 8px 30px;
     }
     .section-padding {
-        padding-top: 60px;
-        padding-bottom: 60px;
+      padding-top: 245px;
+      padding-bottom: 60px;
     }
     .angle:after {
         height: 60px;
@@ -188,7 +190,9 @@
         margin-bottom: 0;
     }
     .mobile-image {
-        display: none !important;
+        display: block !important;
+        position: relative;
+        top: 230px;
     }
     .feature-area,
     .video-area,

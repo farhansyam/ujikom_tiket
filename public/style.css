@@ -425,14 +425,14 @@ input:-webkit-autofill:focus {
 .home-area {
     width: 100%;
     background: url('images/header-bg.jpg') no-repeat scroll center bottom / cover;
-    padding-top: 26vh;
+    padding-top: 36vh;
     color: #ffffff;
     margin-bottom: 100px;
 }
 
 .home-area .mobile-image {
     margin-right: 0;
-    margin-left: 0;
+    /* margin-left: 0; */
     margin-bottom: -158px;
 }
 

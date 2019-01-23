@@ -20,12 +20,35 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+
+        /**
+         * Determine if the request field is email or username.
+         *
+         * @param  \Illuminate\Http\Request  $request
+         * @return string
+         */
+        public function field(Request $request)
+        {
+            $email = $this->username();
+
+            return filter_var($request->get($email), FILTER_VALIDATE_EMAIL) ? $email : 'username';
+        }
+
+        /**
+         * Validate the user login request.
+         *
+         * @param  \Illuminate\Http\Request  $request
+         * @return void
+         */
+
+
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
