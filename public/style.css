@@ -237,32 +237,6 @@ input:-webkit-autofill:focus {
 }
 
 .angle,
-.overlay {
-    position: relative;
-    z-index: 1;
-}
-
-.overlay:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#482cbf+0,6ac6f0+100 */
-    background: rgb(72, 44, 191);
-    /* Old browsers */
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, rgba(72, 44, 191, 1) 0%, rgba(106, 198, 240, 1) 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: -o-linear-gradient(45deg, rgba(72, 44, 191, 1) 0%, rgba(106, 198, 240, 1) 100%);
-    background: linear-gradient(45deg, rgba(72, 44, 191, 1) 0%, rgba(106, 198, 240, 1) 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#482cbf', endColorstr='#6ac6f0', GradientType=1);
-    opacity: 0.8;
-    /* IE6-9 fallback on horizontal gradient */
-    z-index: -2;
-}
 
 .angle:after {
     content: "";
@@ -346,7 +320,7 @@ input:-webkit-autofill:focus {
 .mainmenu-area .right-button a {
     color: #ffffff;
     padding: 10px 40px;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     background-color: rgba(255, 255, 255, 0.3);
     display: inline-block;
     text-transform: uppercase;
@@ -1027,38 +1001,6 @@ input:-webkit-autofill:focus {
     color: #5e88fc;
 }
 
-.preloader {
-    background-color: #ffffff;
-    bottom: 0;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 99999999;
-}
-
-.preloader span {
-    background: rgb(72, 44, 191);
-    background: -webkit-linear-gradient(45deg, rgba(72, 44, 191, 1) 0%, rgba(106, 198, 240, 1) 100%);
-    background: -o-linear-gradient(45deg, rgba(72, 44, 191, 1) 0%, rgba(106, 198, 240, 1) 100%);
-    background: linear-gradient(45deg, rgba(72, 44, 191, 1) 0%, rgba(106, 198, 240, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#482cbf', endColorstr='#6ac6f0', GradientType=1);
-    border-radius: 100%;
-    height: 60px;
-    width: 60px;
-    line-height: 60px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    color: #ffffff;
-    font-size: 24px;
-    margin: auto;
-    -webkit-animation: mymove 1.5s infinite linear;
-    animation: mymove 1.5s infinite linear;
-}
 
 @-webkit-keyframes mymove {
     0 {

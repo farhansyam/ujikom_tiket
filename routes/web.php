@@ -6,7 +6,11 @@ Route::get('/', 'HomeController@index');
 
 // User sudah Login
 
+Route::group(['middleware' => 'auth'],function(){
+   Route::get('/profile', 'UserController@profile');
+   Route::resource('/tes','test');
 
+});
 
 
 
@@ -23,3 +27,7 @@ Route::group(['prefix' => 'petugas','middleware' => 'Petugas'],function(){
   Route::get('/', 'PetugasController@index')->name('petugas');
 });
 Auth::routes();
+
+
+Route::get('/redirect', 'FacebookLoginController@redirect');
+Route::get('/callback', 'FacebookLoginController@callback');
