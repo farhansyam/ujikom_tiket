@@ -28,7 +28,7 @@
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-image="../img/sidebar-5.jpg">
+        <div class="sidebar" data-image="{{asset('img/sidebar-5.jpg')}}">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -61,15 +61,9 @@
                         </a>
                       </li>
                       <li>
-                          <a class="nav-link" href="./typography.html">
+                          <a class="nav-link" href="{{url('admin/transportasi')}}">
                               <i class="fal fa-plane-alt"></i>
-                              <p>Pesawat</p>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="nav-link" href="./icons.html">
-                              <i class="fal fa-train"></i>
-                              <p>Kereta</p>
+                              <p>Transportasi</p>
                           </a>
                       </li>
                       <li>
@@ -124,60 +118,7 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Email Statistics</h4>
-                                    <p class="card-category">Last Campaign Performance</p>
-                                </div>
-                                <div class="card-body ">
-                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                                </div>
-                                <div class="card-footer ">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Users Behavior</h4>
-                                    <p class="card-category">24 Hours performance</p>
-                                </div>
-                                <div class="card-body ">
-                                    <div id="chartHours" class="ct-chart"></div>
-                                </div>
-                                <div class="card-footer ">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Click
-                                        <i class="fa fa-circle text-warning"></i> Click Second Time
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
+            @yield('content')
 
 </body>
 <!--   Core JS Files   -->
@@ -191,12 +132,12 @@
 <!--  Chartist Plugin  -->
 <script src="{{asset('js/plugins/chartist.min.js')}}"></script>
 <!--  Notifications Plugin    -->
-<script src="{{asset('js/plugins/bootstrap-notify.js')}}"></script>
+{{-- <script src="{{asset('js/plugins/bootstrap-notify.js')}}"></script> --}}
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="{{asset('js/light-bootstrap-dashboard.js?v=2.0.1')}}" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('js/demo.js')}}"></script>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function() {
         // Javascript method's body can be found in js/demos.js
 
@@ -247,6 +188,6 @@
         });
 
     });
-</script>
+</script> --}}
 
 </html>

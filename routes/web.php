@@ -19,6 +19,8 @@ Route::group(['middleware' => 'auth'],function(){
 Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
    Route::get('/', 'AdminController@index')->name('admin');
    Route::resource('/tes','test');
+   Route::resource('/transportasi','transportasiController');
+
 
 });
 
