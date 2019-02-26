@@ -19,7 +19,13 @@ Route::group(['middleware' => 'auth'],function(){
 Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
    Route::get('/', 'AdminController@index')->name('admin');
    Route::resource('/tes','test');
+   Route::get('/transportasi/pesawat','transportasiController@pesawat');
+   Route::get('/transportasi/kereta','transportasiController@kereta');
    Route::resource('/transportasi','transportasiController');
+   Route::resource('/rute','RuteController');
+   Route::resource('/users','UserController');
+
+
 
 
 });

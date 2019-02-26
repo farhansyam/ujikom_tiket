@@ -1,193 +1,455 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <style media="screen">
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../img/favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>{{auth::user()->name}}</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- CSS Files -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('css/light-bootstrap-dashboard.css?v=2.0.1')}}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{asset('css/demo.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset('fonts/font_pro.css')}}">
 
-	<style>
-		.sidebar:after, body>.navbar-collapse:after {
-    background: linear-gradient(to bottom, #5fbb91 0%, #000000 100%);
-    background-image: linear-gradient(rgb(95, 187, 145) 0%, rgb(0, 0, 0) 100%);
+    body {
+ padding: 0;
+ margin: 0;
+ background: #a5bcff;
+ color: black;
+ text-align: center;
+ font-family: "Lato", sans-serif;
 }
-	</style>
-</head>
 
-<body>
-    <div class="wrapper">
-        <div class="sidebar" data-image="{{asset('img/sidebar-5.jpg')}}">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+@media screen and (max-width: 700px) {
+ body {
+    padding: 170px 0 0 0;
+    width: 100%
+ }
+}
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        {{auth::user()->name}}
-                    </a>
-                </div>
-                <ul class="nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="dashboard.html">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./table.html">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>Data Verifikasi Order</p>
-                        </a>
-                    </li>
-                    @if (auth::user()->role == 3)
-                      <li>
-                        <a class="nav-link" href="./user.html">
-                          <i class="nc-icon nc-circle-09"></i>
-                          <p>Users</p>
-                        </a>
-                      </li>
-                      <li>
-                          <a class="nav-link" href="{{url('admin/transportasi')}}">
-                              <i class="fal fa-plane-alt"></i>
-                              <p>Transportasi</p>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="nav-link" href="./maps.html">
-                              <i class="fa fa-envelope-square"></i>
-                              <p>Mail</p>
-                          </a>
-                      </li>
-                    @endif
-                    <li>
-                        <a class="nav-link" href="./notifications.html">
-                            <i class="fa fa-file-archive"></i>
-                            <p>Laporan</p>
-                        </a>
-                    </li>
+a {
+ color: inherit;
+}
+.menu-item,
+.menu-open-button {
+ background: #EEEEEE;
+ border-radius: 100%;
+ width: 80px;
+ height: 80px;
+ margin-left: -40px;
+ position: absolute;
+ color: #FFFFFF;
+ text-align: center;
+ line-height: 80px;
+ -webkit-transform: translate3d(0, 0, 0);
+ transform: translate3d(0, 0, 0);
+ -webkit-transition: -webkit-transform ease-out 200ms;
+ transition: -webkit-transform ease-out 200ms;
+ transition: transform ease-out 200ms;
+ transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+}
 
-                </ul>
-            </div>
-        </div>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class=" container-fluid  ">
-                    <a class="navbar-brand" href="#pablo"> Dashboard </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href=" #" class="nav-link" data-toggle="dropdown">
-                                    <span class="d-lg-none">Dashboard</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                              <a class="dropdown-item" href="{{ route('logout') }}"
-                                 onclick="event.preventDefault();
-                                               document.getElementById('logout-form').submit();">
-                                  {{ __('Logout') }}
-                              </a>
+.menu-open {
+ display: none;
+}
 
-                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                  @csrf
-                              </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- End Navbar -->
-            @yield('content')
+.lines {
+ width: 25px;
+ height: 3px;
+ background: #596778;
+ display: block;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ margin-left: -12.5px;
+ margin-top: -1.5px;
+ -webkit-transition: -webkit-transform 200ms;
+ transition: -webkit-transform 200ms;
+ transition: transform 200ms;
+ transition: transform 200ms, -webkit-transform 200ms;
+}
 
-</body>
-<!--   Core JS Files   -->
-<script src="{{asset('js/core/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="{{asset('js/plugins/bootstrap-switch.js')}}"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!--  Chartist Plugin  -->
-<script src="{{asset('js/plugins/chartist.min.js')}}"></script>
-<!--  Notifications Plugin    -->
-{{-- <script src="{{asset('js/plugins/bootstrap-notify.js')}}"></script> --}}
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="{{asset('js/light-bootstrap-dashboard.js?v=2.0.1')}}" type="text/javascript"></script>
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-<script src="{{asset('js/demo.js')}}"></script>
-{{-- <script type="text/javascript">
-    $(document).ready(function() {
-        // Javascript method's body can be found in js/demos.js
+.line-1 {
+ -webkit-transform: translate3d(0, -8px, 0);
+ transform: translate3d(0, -8px, 0);
+}
 
-        $.notify({
-        	// options
-        	title: '##### notify #####',
-        	message: 'Selamat datang {{auth::user()->name}}',
-        	url: 'https://github.com/mouse0270/bootstrap-notify',
-        	target: '_blank'
-        },{
-        	// settings
-        	element: 'body',
-        	position: null,
-        	type: "info",
-        	allow_dismiss: true,
-        	newest_on_top: false,
-        	showProgressbar: false,
-        	placement: {
-        		from: "top",
-        		align: "right"
-        	},
-        	offset: 20,
-        	spacing: 10,
-        	z_index: 1031,
-        	delay: 5000,
-        	timer: 1000,
-        	url_target: '_blank',
-        	mouse_over: null,
-        	animate: {
-        		enter: 'animated fadeInDown',
-        		exit: 'animated fadeOutUp'
-        	},
-        	onShow: null,
-        	onShown: null,
-        	onClose: null,
-        	onClosed: null,
-        	icon_type: 'class',
-        	template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-        		'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-        		'<span data-notify="icon"></span> ' +
-        		'<span data-notify="title">{1}</span> ' +
-        		'<span data-notify="message">{2}</span>' +
-        		'<div class="progress" data-notify="progressbar">' +
-        			'<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-        		'</div>' +
-        		'<a href="{3}" target="{4}" data-notify="url"></a>' +
-        	'</div>'
-        });
+.line-2 {
+ -webkit-transform: translate3d(0, 0, 0);
+ transform: translate3d(0, 0, 0);
+}
 
-    });
-</script> --}}
+.line-3 {
+ -webkit-transform: translate3d(0, 8px, 0);
+ transform: translate3d(0, 8px, 0);
+}
 
+.menu-open:checked + .menu-open-button .line-1 {
+ -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+ transform: translate3d(0, 0, 0) rotate(45deg);
+}
+
+.menu-open:checked + .menu-open-button .line-2 {
+ -webkit-transform: translate3d(0, 0, 0) scale(0.1, 1);
+ transform: translate3d(0, 0, 0) scale(0.1, 1);
+}
+
+.menu-open:checked + .menu-open-button .line-3 {
+ -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
+ transform: translate3d(0, 0, 0) rotate(-45deg);
+}
+
+.menu {
+ margin: auto;
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ left: -1026px;
+ right: 0;
+ width: 80px;
+ height: 80px;
+ text-align: center;
+ box-sizing: border-box;
+ font-size: 26px;
+}
+
+
+/* .menu-item {
+ transition: all 0.1s ease 0s;
+} */
+
+.menu-item:hover {
+ background: #EEEEEE;
+ color: #3290B1;
+}
+
+.menu-item:nth-child(3) {
+ -webkit-transition-duration: 180ms;
+ transition-duration: 180ms;
+}
+
+.menu-item:nth-child(4) {
+ -webkit-transition-duration: 180ms;
+ transition-duration: 180ms;
+}
+
+.menu-item:nth-child(5) {
+ -webkit-transition-duration: 180ms;
+ transition-duration: 180ms;
+}
+
+.menu-item:nth-child(6) {
+ -webkit-transition-duration: 180ms;
+ transition-duration: 180ms;
+}
+
+.menu-item:nth-child(7) {
+ -webkit-transition-duration: 180ms;
+ transition-duration: 180ms;
+}
+
+.menu-item:nth-child(8) {
+ -webkit-transition-duration: 180ms;
+ transition-duration: 180ms;
+}
+
+.menu-item:nth-child(9) {
+ -webkit-transition-duration: 180ms;
+ transition-duration: 180ms;
+}
+
+.menu-open-button {
+ z-index: 2;
+ -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ -webkit-transition-duration: 400ms;
+ transition-duration: 400ms;
+ -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+ transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+ cursor: pointer;
+ box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+}
+
+.menu-open-button:hover {
+ -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+ transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+.menu-open:checked + .menu-open-button {
+ -webkit-transition-timing-function: linear;
+ transition-timing-function: linear;
+ -webkit-transition-duration: 200ms;
+ transition-duration: 200ms;
+ -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+ transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+}
+
+.menu-open:checked ~ .menu-item {
+ -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+ transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(3) {
+ transition-duration: 180ms;
+ -webkit-transition-duration: 180ms;
+ -webkit-transform: translate3d(0.08361px, -104.99997px, 0);
+ transform: translate3d(0.08361px, -104.99997px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(4) {
+ transition-duration: 280ms;
+ -webkit-transition-duration: 280ms;
+ -webkit-transform: translate3d(90.9466px, -52.47586px, 0);
+ transform: translate3d(90.9466px, -52.47586px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(5) {
+ transition-duration: 380ms;
+ -webkit-transition-duration: 380ms;
+ -webkit-transform: translate3d(90.9466px, 52.47586px, 0);
+ transform: translate3d(90.9466px, 52.47586px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(6) {
+ transition-duration: 480ms;
+ -webkit-transition-duration: 480ms;
+ -webkit-transform: translate3d(0.08361px, 104.99997px, 0);
+ transform: translate3d(0.08361px, 104.99997px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(7) {
+ transition-duration: 580ms;
+ -webkit-transition-duration: 580ms;
+ -webkit-transform: translate3d(-90.86291px, 52.62064px, 0);
+ transform: translate3d(-90.86291px, 52.62064px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(8) {
+ transition-duration: 680ms;
+ -webkit-transition-duration: 680ms;
+ -webkit-transform: translate3d(-91.03006px, -52.33095px, 0);
+ transform: translate3d(-91.03006px, -52.33095px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(9) {
+ transition-duration: 780ms;
+ -webkit-transition-duration: 780ms;
+ -webkit-transform: translate3d(-0.25084px, -104.9997px, 0);
+ transform: translate3d(-0.25084px, -104.9997px, 0);
+}
+
+.blue {
+ background-color: #669AE1;
+ box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+ text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.blue:hover {
+ color: #669AE1;
+ text-shadow: none;
+}
+
+.green {
+ background-color: #70CC72;
+ box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+ text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.green:hover {
+ color: #70CC72;
+ text-shadow: none;
+}
+
+.red {
+ background-color: #FE4365;
+ box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+ text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.tosca {
+ background-color: rgba(63, 255, 182, 0.71);
+ box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+ text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.red:hover {
+ color: #FE4365;
+ text-shadow: none;
+}
+
+.purple {
+ background-color: #C49CDE;
+ box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+ text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.purple:hover {
+ color: #C49CDE;
+ text-shadow: none;
+}
+
+.orange {
+ background-color: #FC913A;
+ box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+ text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.orange:hover {
+ color: #FC913A;
+ text-shadow: none;
+}
+
+.lightblue {
+ background-color: #62C2E4;
+ box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+ text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.lightblue:hover {
+ color: #62C2E4;
+ text-shadow: none;
+}
+
+.credit {
+ margin: 24px 20px 120px 0;
+ text-align: right;
+ color: #EEEEEE;
+}
+
+.credit a {
+ padding: 8px 0;
+ color: #C49CDE;
+ text-decoration: none;
+ transition: all 0.3s ease 0s;
+}
+
+.credit a:hover {
+ text-decoration: underline;
+}
+
+
+/* Breadcumb */
+* {
+  /* margin: 0px auto; */
+/* /  text-align:center; */
+  /* padding: 0px; */
+  list-style: none;
+  /* font-family: 'Open Sans'; */
+}
+
+
+.cont_breadcrumbs {
+  width: 350px;
+}
+
+
+
+.cont_breadcrumbs_2 {
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 20px 20px;
+}
+
+.cont_breadcrumbs_2 > ul > li {
+  position: relative;
+  float: left;
+  transform: skewX(-15deg);
+  background-color: #fff;
+box-shadow: -2px 0px 20px -6px rgba(0,0,0,0.5);
+z-index: 1;
+transition: all 0.5s;
+}
+
+.cont_breadcrumbs_2 > ul > li:hover {
+ background-color: #CFD8DC;
+}
+
+.cont_breadcrumbs_2 > ul > li  > a {
+  display: block;
+  padding: 10px;
+  font-size: 20px;
+ transform: skewX(15deg);
+ text-decoration:none;
+ color: #444;
+font-weight: 300;
+}
+.cont_breadcrumbs_2 > ul > li:last-child {
+  background-color: #78909C;
+  transform: skew(0deg);
+margin-left: -5px;
+
+}
+
+.cont_breadcrumbs_2 > ul > li:last-child > a {
+  color: #fff;
+ transform: skewX(0deg);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(9) {
+    transition-duration: 780ms;
+    -webkit-transition-duration: 780ms;
+    -webkit-transform: translate3d(-0.25084px, -104.9997px, 0);
+    transform: translate3d(-0.25084px, -196.9997px, 0);
+}
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('fonts/font_pro.css')}}">
+  </head>
+  <body>
+    <nav class="menu">
+   <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+   <label class="menu-open-button" for="menu-open">
+    <span class="lines line-1"></span>
+    <span class="lines line-2"></span>
+    <span class="lines line-3"></span>
+  </label>
+
+   <a href="#" class="menu-item blue"> <i class="fa fa-file"></i> </a>
+   <a href="{{url('admin/transportasi/kereta')}}" class="menu-item green"> <i class="fa fa-train"></i> </a>
+   <a href="{{url('admin/rute')}}" class="menu-item tosca"> <i class="fal fa-route"></i> </a>
+   <a href="#" class="menu-item red"> <i class="fa fa-database"></i> </a>
+   <a href="#" class="menu-item lightblue"> <i class="fa fa-money-check-alt"></i> </a>
+   <a href="{{url('admin/transportasi/pesawat')}}" class="menu-item purple"> <i class="fa fa-plane"></i> </a>
+   <a href="{{url('admin/users')}}" class="menu-item orange"> <i class="fa fa-user-alt"></i> </a>
+</nav>
+<div class="cont_principal">
+<div class="cont_breadcrumbs">
+
+<div class="cont_breadcrumbs_2">
+  <ul>
+    <li><a href="#">One</a></li>
+    <li><a href="#">Tow</a></li>
+    <li><a href="#">Three</a></li>
+    <li><a href="#">Four</a></li>
+    <li><a href="#">Five</a></li>
+  </ul>
+
+  </div>
+
+
+  </div>
+
+
+</div>
+<div style="text-align:right !important; padding-right:50px;">
+  <ul style="
+    padding: 0px 20px;
+    display: inline-flex;
+    list-style: none;
+">
+    <li style="
+    padding: 0px 35px;
+">  <a href="{{url('profile')}}" style="font-family: 'Roboto Mono', monospace;text-decoration:none"><h2>{{auth::user()->name}}</h2></a></li>
+    <li>
+      <a style="font-family: 'Roboto Mono', monospace;text-decoration:none" class="dropdown-item" href="{{ route('logout') }}"
+         onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit(); ">
+                       <h2>{{ __('Logout') }}</h2>
+      </a>
+    </li>
+  </ul>
+</div>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+  @yield('content')
+  </body>
 </html>

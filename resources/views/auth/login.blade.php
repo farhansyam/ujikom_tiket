@@ -6,10 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-                <fb:login-button
-scope="public_profile,email"
-onlogin="checkLoginState();">
-</fb:login-button>
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -78,5 +75,8 @@ onlogin="checkLoginState();">
             </div>
         </div>
     </div>
+    <example-component></example-component>
+    
 </div>
+
 @endsection

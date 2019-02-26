@@ -51,7 +51,13 @@ class transportasiController extends Controller
         'id_type_transportasi' => $request->type
       ]);
 
-      return redirect('admin/transportasi');
+      if ($request->type == 2) {
+        return redirect('admin/transportasi/pesawat');
+      }
+      else {
+        return redirect('admin/transportasi/kereta');
+
+      }
 
 
     }
@@ -75,7 +81,8 @@ class transportasiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transportasi = Transportasi::whereIdTransportasi($id)->first();
+        return view('admin.transportasi.edit',compact('transportasi'));
     }
 
     /**
@@ -87,7 +94,30 @@ class transportasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+
+          'kode_transportasi' => 'required|min:3|max:10',
+          'jumlah_kursi' => 'required|min:2|max:3',
+          'Keterangan' => 'required|min:6|max:40',
+          'type' => 'required',
+
+        ]);
+
+        Transportasi::whereIdTransportasi($id)->update([
+            'kode' => $request->kode_transportasi,
+            'jumlah_kursi' => $request->jumlah_kursi,
+            'keterangan' => $request->Keterangan,
+            'id_type_transportasi' => $request->type,
+        ]);
+
+        if ($request->type == 2) {
+          return redirect('admin/transportasi/pesawat');
+        }
+        else {
+          return redirect('admin/transportasi/kereta');
+
+        }
     }
 
     /**
@@ -98,6 +128,27 @@ class transportasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $transport = Transportasi::whereIdTransportasi($id)->first();
+
+      if ($transport->id_type_transportasi ==  2) {
+        Transportasi::where('id_transportasi',$id)->delete();
+        return redirect('admin/transportasi/pesawat');
+      }
+      else {
+        Transportasi::where('id_transportasi',$id)->delete();
+        return redirect('admin/transportasi/kereta');
+      }
+    }
+
+    public function pesawat()
+    {
+      $transportasi = Transportasi::where('id_type_transportasi','2')->get();
+      return view('admin.transportasi.index',compact('transportasi'));
+    }
+
+    public function kereta()
+    {
+      $transportasi = Transportasi::where('id_type_transportasi','1')->get();
+      return view('admin.transportasi.index',compact('transportasi'));
     }
 }
