@@ -1,64 +1,66 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('content')
 
-  <div class="container col-md-8">
-<br><br>
-<h1>Form Tambah</h1>
-@if ($errors->any())
-  <div class="class alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{$error}}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
-<form class="" action="{{url('admin/transportasi')}}/{{$transportasi->id_transportasi}}" method="post">
 
-    <div class="row col-sm-12">
-        <div class="col-md-3">
-          <label for="">Kode Transportasi</label>
-        </div>
-<input type="hidden" name="_method" value="PUT">
-        {{ csrf_field() }}
-        <div class="col-md-9">
-            <input type="text" name="kode_transportasi" value="{{old('kode_transportasi')}} {{$transportasi->kode}}" class="col-sm-6">
-        </div>
+<div class="container">
+          <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                  <ul class="breadcrumb">
+                    <li class="active">Admin</li>
 
-        <div class="col-md-3">
-          <label for="">Jumlah kursi</label>
-        </div>
-        <div class="col-md-9">
-            <input type="text" name="jumlah_kursi" value="{{old('jumlah_kursi')}} {{$transportasi->jumlah_kursi}}" class="col-sm-6">
-        </div>
+                    <li class="active">Transportasi</li>
+                    <li class="active">Create</li>
+                  </ul>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">Kelola Rute</div>
 
-        <div class="col-md-3">
-          <label for="">keterangan</label>
-        </div>
-        <div class="col-md-9">
-            <input type="text" name="Keterangan" value="{{old('keterangan')}} {{$transportasi->keterangan}}" class="col-sm-6">
-        </div>
+            <div class="panel-body">
 
-        <div class="col-md-3">
-          <label for="">Type</label>
-        </div>
-        <div class="col-md-9">
-            @if ($transportasi->id_type_transportasi  == 1)
-              <select class="" name="type">
-                <option value="1">Kereta</option>
-              </select>
-            @else
-              <select class="" name="type">
-                <option value="2">Pesawat</option>
-              </select>
-            @endif
+              @if ($errors->any())
+                <div class="class alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>{{$error}}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+              <form class="" action="{{url('admin/transportasi')}}/{{$transportasi->id_transportasi}}" method="post">
+                  <input type="hidden" name="_method" value="PUT">
+                 <div class="form-group"> 
+                        <label for="name" class="col-md-3 control-label" >Kode Transportasi</label>
+                        <div class="col-md-7">
+                        <input required type="text" name="kode_transportasi" value="{{old('kode_transportasi')}} {{$transportasi->kode}}" class="form-control">
+                          <br>
+                        </div>
+                  </div> 
+                  <div class="form-group">
+                        <label for="name" class="col-md-3 control-label" >Jumlah Kursi</label>
+                        <div class="col-md-7">
+                        <input required type="text" name="jumlah_kursi" value="{{old('jumlah_kursi')}} {{$transportasi->jumlah_kursi}}" class="form-control">
+                          <br>
+                        </div>
+                  </div> 
+                    <div class="form-group">
+                        <label for="name" class="col-md-3 control-label" >Keterangan</label>
+                        <div class="col-md-7">
+                        <input required type="text" name="Keterangan" value="{{old('Keterangan')}}{{$transportasi->keterangan}}" class="form-control">
+                          <br>
+                        </div>  
+                      </div> 
+                      
+                        <br><br><br><br><br><br><br><br>
+                        <input type="submit" name="" value="Simpan" class="btn btn-primary">
 
-        </div>
-        <input type="submit" name="" value="Simpan" class="btn">
-
-        </form>
+                      </div>
+                    
+                {{ csrf_field() }}
+          </form>
+              
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
-
-  </div>
 
 @endsection

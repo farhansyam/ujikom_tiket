@@ -20,7 +20,15 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
+        "sweetalert": "^2.0.8",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.7"
+    },
+    "dependencies": {
+        "laravel-vue-pagination": "^2.2.0",
+        "vue-router": "^3.0.2",
+        "vue-simple-spinner": "^1.2.8",
+        "vue-swal": "^1.0.0",
+        "vue2-selectize": "^1.1.7"
     }
 }

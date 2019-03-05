@@ -1,267 +1,553 @@
-!doctype html>
-<html class="no-js" lang="zxx">
-
+@extends('layouts.master_ui')
 <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Sumon Rahman">
-    <meta name="description" content="">
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title -->
-    <title>F-TIKET</title>
-    <!-- Place favicon.ico in the root directory -->
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
-    <!-- Plugin-CSS -->
-    {{-- <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}"> --}}
-    <link rel="stylesheet" href="{{asset('css/bootstrap1.min.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/linearicons.css')}}"> --}}
-    {{-- <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}"> --}}
-    {{-- <link rel="stylesheet" href="{{asset('css/animate.css')}}">/ --}}
-    <!-- Main-Stylesheets -->
-    {{-- <link rel="stylesheet" href="{{asset('css/normalize.css')}}"> --}}
-    <link rel="stylesheet" href="{{asset('style.css')}}">
-    <link rel="stylesheet" href="{{asset('fonts/font_pro.css')}}">
-    <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <script src="{{asset('js/vendor/modernizr-2.8.3.min.js')}}"></script>
-    <style media="screen">
-      .fa-plane-alt{
-        color:#64b5f6;
-        font-size: 20px;
-      }
+<style>
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,700,300);
+* {
+  box-sizing: border-box;
+}
 
-      .fa-train{
-        font-size: 20px;
-        color:#fedd9d;
-      }
+body {
+  font-family: 'Nunito', sans-serif;
+}
+body .page {
+  margin: 0 auto;
+  width: 920px;
+}
+body .content {
+  width: 33.33%;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  height: 100vh;
+  max-width: 300px;
+}
+body .circle_inner__layer {
+  width: 600px;
+  height: 200px;
+  transition: all .4s;
+  position: absolute;
+  top: 0;
+  left: -200px;
+}
+body .circle_inner__layer img {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+body .circle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50%;
+  width: 200px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  transition: all .5s;
+  cursor: pointer;
+}
+body .circle:hover .circle_shine {
+  top: 330px;
+  left: -200px;
+}
+body .circle_shine {
+  background: white;
+  width: 600px;
+  transition: .3s;
+  height: 200px;
+  opacity: 0.2;
+  top: -10px;
+  left: -90px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: absolute;
+  z-index: 2;
+}
+body .circle:hover h2, body .circle:hover h3 {
+  opacity: 1;
+  top: -36px;
+}
+body .circle:hover .content_shadow {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  top: -22px;
+}
+body .circle:hover h3 {
+  transition: all .2s .04s;
+}
+body .circle:hover h2 {
+  transition: all .2s;
+}
+body .circle .circle_inner__layer:nth-of-type(1) {
+  top: 0px;
+  left: 0px;
+}
+body .circle .circle_inner__layer:nth-of-type(2) {
+  top: 0px;
+  left: -210px;
+}
+body .circle .circle_inner__layer:nth-of-type(3) {
+  top: 0px;
+  left: -440px;
+}
+body .circle_title {
+  text-align: center;
+}
+body .circle_title h2, body .circle_title h3 {
+  opacity: 0;
+  color: #4A7479;
+  margin: 0;
+  transition: all .2s .04s;
+  position: relative;
+  top: -10px;
+}
+body .circle_title h3 {
+  transition: all .2s;
+  color: #B0D5D6;
+  font-size: 15px;
+}
+body .circle_inner {
+  border-radius: 200px;
+  background: #B0D5D6;
+  overflow: hidden;
+  margin: auto;
+  width: 200px;
+  z-index: 1;
+  transition: all .3s;
+  height: 200px;
+  position: relative;
+}
+body .circle_inner:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+body .circle_inner:hover .circle_inner__layer:nth-of-type(1) {
+  left: -80px;
+  transition: all 4s linear;
+}
+body .circle_inner:hover .circle_inner__layer:nth-of-type(2) {
+  left: -400px;
+  transition: all 4s linear;
+}
+body .circle_inner:hover .circle_inner__layer:nth-of-type(3) {
+  left: -140px;
+  transition: all 4s linear;
+}
+body .content_shadow {
+  width: 200px;
+  box-shadow: 0px 31px 19px -2px #E0E8F9;
+  height: 20px;
+  border-radius: 70%;
+  position: relative;
+  top: -44px;
+  transition: all .3s;
+  z-index: 0;
+}
 
-      .fa-ticket{
-        color:#42f498;
-        font-size: 20px;
 
-      }
-
-      .fa-headset{
-        color:#faff2e;
-        font-size: 20px;
-
-      }
-      .mainmenu-area .right-button a {
-    padding: 2px 10px;
-
-
-  }
-
-
-    </style>
-    <!--[if lt IE 9]>
-        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-
-	<script src="{{asset('js/vendor/jquery-1.12.4.min.js')}}"></script>
-	   <script type="text/javascript">
-            $(document).ready(function(){
-            var bg=[0,1,2];
-            var index=0;
-            setInterval(function(){
-            index=(index + 1) % bg.length;
-            $('header').css('background-image','url("images/'+index+'.jpg")');
-            },5000);
-            });
-        </script>
-
-        <style media="screen">
-
-        </style>
+</style>
 
 </head>
-
-<body data-spy="sVcroll" data-target=".mainmenu-area">
-    <!-- Preloader-content -->
-    <div class="preloader">
-        <span><i class="lnr lnr-sun"></i></span>
-    </div>
-    <!-- MainMenu-Area -->
-    <nav class="mainmenu-area" data-spy="affix" data-offset-top="200">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary_menu">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand" href="#">F-Tiket</a>
-            </div>
-            <div class="collapse navbar-collapse" id="primary_menu">
-                <ul class="nav navbar-nav mainmenu">
-                    <li class="active"><i class="fal fa-plane-alt"></i><a href="#home_page">Pesawat</a></li>
-                    <li><i class="fal fa-train"></i><a href="#about_page">Kereta</a></li>
-                    <li><i class="fal fa-ticket"></i><a href="#features_page">Cek Order</a></li>
-                    <li><i class="fal fa-headset"></i><a href="#contact_page">Contacts</a></li>
-                </ul>
-                <div class="right-button hidden-xs">
-                    @if (auth::user())
-
-                      <a href="{{ url('profile') }}">
-                        {{auth::user()->name}}
-                      </a>
-                      <a class="dropdown-item" href="{{ route('logout') }}"
-                         onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
-                          {{ __('Logout') }}
-
-
-                                                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                                  @csrf
-                                                              </form>
-
-                      </a>
-                      @else
-                        <a href="{{url('register')}}">register</a>
-                        <a href="{{url('login')}}">Login</a>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- MainMenu-Area-End -->
-    <!-- Home-Area -->
-    <header class="home-area overlay" id="home_page">
-
-
-	  <div class="container">
+@section('content')
+<div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{asset('images/bg2.jpg')}}');">
+    <div class="container">
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 mobile-image">
-          <div class="shadow p-3 mb-5 bg-white rounded">
-           <figure class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="panel panel-default">
-                <div class="panel panel-head" style="background:#e3edff;">
-                  {{-- <h3 class="center" style="color:black; font-family: 'Lato', sans-serif; margin: 8px 272px 15px;">Mau ke mana?</h3> --}}
-                </div>
-  							<div class="panel panel-body">
-                      <i class="far fa-plane-alt" style="font-size:60px;"></i><h5>Cari harga tiket pesawat murah</h5>
-                  <div class="col-sm-6">
-                    <br><br>
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                  <br><br><br><br><br>
-  							</div>
-						  </div>
-            </div>
-          </figure>
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand">
+            <h1>Tik-Ketik.</h1>
+            <h3>Pesan Tiket Sekarang Menluncur Kemudian</h3>
+          </div>
         </div>
       </div>
     </div>
-    </header>
-    <!-- Home-Area-End -->
-    <!-- About-Area -->
-    <!-- Footer-Area -->
-    <footer class="footer-area" id="contact_page">
-        <div class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="page-title text-center">
-                            <h5 class="title">Contact US</h5>
-                            <h3 class="dark-color">Find Us By Bellow Details</h3>
-                            <div class="space-60"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="footer-box">
-                            <div class="box-icon">
-                                <span class="lnr lnr-map-marker"></span>
-                            </div>
-                            <p>8-54 Paya Lebar Square <br /> 60 Paya Lebar Roa SG, Singapore</p>
-                        </div>
-                        <div class="space-30 hidden visible-xs"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="footer-box">
-                            <div class="box-icon">
-                                <span class="lnr lnr-phone-handset"></span>
-                            </div>
-                            <p>+65 93901336 <br /> +65 93901337</p>
-                        </div>
-                        <div class="space-30 hidden visible-xs"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="footer-box">
-                            <div class="box-icon">
-                                <span class="lnr lnr-envelope"></span>
-                            </div>
-                            <p>yourmail@gmail.com <br /> backpiper.com@gmail.com
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <div class="main main-raised">
+    <div class="section section-basic">
+      <div class="container">
+        <div class="title">
+          <h2>Basic Elements</h2>
         </div>
-        <!-- Footer-Bootom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-md-5">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            <span>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Go Tic <i class="lnr lnr-heart" aria-hidden="true"></i> by <a href="https://github.com/farhansyam" target="_blank">Farhan Syam</a></span>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <div class="space-30 hidden visible-xs"></div>
-                    </div>
+        <!--  buttons -->
+
+    <!-- 	            end nav tabs -->
+    <div class="section section-white">
+      <div class="container">
+        <!--                 nav pills -->
+        <div id="navigation-pills">
+          <div class="title">
+            <h3>Navigation Pills</h3>
+          </div>
+          <div class="title">
+            <h3>
+              <small>With Icons</small>
+            </h3>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-8">
+              <ul class="nav nav-pills nav-pills-icons" role="tablist">
+                <!--
+                                color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                            -->
+                <li class="nav-item">
+                  <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab">
+                    <i class="material-icons">dashboard</i> Dashboard
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#schedule-1" role="tab" data-toggle="tab">
+                    <i class="material-icons">schedule</i> Schedule
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+                    <i class="material-icons">list</i> Tasks
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content tab-space">
+                <div class="tab-pane active" id="dashboard-1">
+                  Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                  <br>
+                  <br> Dramatically visualize customer directed convergence without revolutionary ROI.
                 </div>
+                <div class="tab-pane" id="schedule-1">
+                  Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                  <br>
+                  <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                </div>
+                <div class="tab-pane" id="tasks-1">
+                  Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                  <br>
+                  <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                </div>
+              </div>
             </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="row">
+                <div class="col-md-3">
+                  <ul class="nav nav-pills nav-pills-icons flex-column" role="tablist">
+                    <!--
+                                        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                                    -->
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#dashboard-2" role="tab" data-toggle="tab">
+                        <i class="material-icons">dashboard</i> Dashboard
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#schedule-2" role="tab" data-toggle="tab">
+                        <i class="material-icons">schedule</i> Schedule
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-8">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="dashboard-2">
+                      Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                      <br>
+                      <br> Dramatically visualize customer directed convergence without revolutionary ROI.
+                    </div>
+                    <div class="tab-pane" id="schedule-2">
+                      Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                      <br>
+                      <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- Footer-Bootom-End -->
-    </footer>
-    <!-- Footer-Area-End -->
-    <!--Vendor-JS-->
-    <script>
-                        window.fbAsyncInit = function() {
-                        FB.init({
-                        appId      : '{your-app-id}',
-                        cookie     : true,
-                        xfbml      : true,
-                        version    : '{api-version}'
-                        });
+        <!--                 end nav pills -->
+      </div>
+    </div>
+    <!--        notifications -->
 
-                        FB.AppEvents.logPageView();
+    <div class="section cd-section" id="javascriptComponents">
+      <div class="container">
+        <div class="title">
+          <h2>Javascript components</h2>
+        </div>
+        <!--                 modals -->
+      <div class='page'>
+  <div class='content'>
+    <div class='circle'>
+      <div class='circle_title'>
+        <h2>Great Outdoors</h2>
+        <h3>Get some fresh air</h3>
+      </div>
+      <div class='circle_inner'>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc1.png'>
+        </div>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc3.png'>
+        </div>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc2.png'>
+        </div>
+      </div>
+      <div class='content_shadow'></div>
+    </div>
+  </div>
+  <div class='content'>
+    <div class='circle'>
+      <div class='circle_title'>
+        <h2>City Breaks</h2>
+        <h3>Go somewhere new</h3>
+      </div>
+      <div class='circle_inner'>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc4.png'>
+        </div>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc5.png'>
+        </div>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc6.png'>
+        </div>
+      </div>
+      <div class='content_shadow'></div>
+    </div>
+  </div>
+  <div class='content'>
+    <div class='circle'>
+      <div class='circle_title'>
+        <h2>Cheap Flights</h2>
+        <h3>Come fly with me</h3>
+      </div>
+      <div class='circle_inner'>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc7.png'>
+        </div>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc8.png'>
+        </div>
+        <div class='circle_inner__layer'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc9.png'>
+        </div>
+      </div>
+      <div class='content_shadow'></div>
+    </div>
+  </div>
+</div>
 
-                        };
+      </div>
+    </div>
+    <!--         carousel  -->
+    <div class="section" id="carousel">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mr-auto ml-auto">
+            <!-- Carousel Card -->
+            <div class="card card-raised card-carousel">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="./assets/img/bg2.jpg" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h4>
+                        <i class="material-icons">location_on</i> Yellowstone National Park, United States
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/img/bg3.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h4>
+                        <i class="material-icons">location_on</i> Somewhere Beyond, United States
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/img/bg.jpg" alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h4>
+                        <i class="material-icons">location_on</i> Yellowstone National Park, United States
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <i class="material-icons">keyboard_arrow_left</i>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <i class="material-icons">keyboard_arrow_right</i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+            <!-- End Carousel Card -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--         end carousel -->
+    <div class="section">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <h2>Completed with examples</h2>
+            <h4>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go. More importantly, looking at them will give you a picture of what you can built with this powerful kit.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section section-signup page-header" style="background-image: url('{{asset('images/city.jpg')}}');">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+            <div class="card card-login">
+              <form class="form" method="" action="">
+                <div class="card-header card-header-primary text-center">
+                  <h4 class="card-title">Login</h4>
+                  <div class="social-line">
+                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                      <i class="fa fa-facebook-square"></i>
+                    </a>
+                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#pablo" class="btn btn-just-icon btn-link">
+                      <i class="fa fa-google-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="description text-center">Or Be Classical</p>
+                <div class="card-body">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="First Name...">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">mail</i>
+                      </span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Email...">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password...">
+                  </div>
+                </div>
+                <div class="footer text-center">
+                  <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-center">
+      <a href="examples/login-page.html" class="btn btn-link btn-primary btn-lg" target="_blank">View Login Page</a>
+    </div>
+    <div class="section section-examples">
+      <div class="container-fluid text-center">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="examples/landing-page.html" target="_blank">
+              <img src="./assets/img/landing.jpg" alt="Rounded Image" class="img-raised rounded img-fluid">
+              <button class="btn  btn-link btn-primary btn-lg">View Landing Page</button>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="examples/profile-page.html" target="_blank">
+              <img src="./assets/img/profile.jpg" alt="Rounded Image" class="img-raised rounded img-fluid">
+              <button class="btn btn-link btn-primary btn-lg">View Profile Page</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section section-download" id="downloadSection">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2>Do you love this UI Kit?</h2>
+            <h4>Cause if you do, it can be yours for FREE. Hit the buttons below to navigate to our website where you can find the kit. Our friends from
+              <a href="https://themeisle.com/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website" target="_blank">ThemeIsle</a> created a Wordpress Theme which can be also downloaded for free. Start a new project or give an old Bootstrap project a new look!</h4>
+          </div>
+          <div class="col-sm-8 col-md-6 ml-auto mr-auto">
+            <a href="https://www.creative-tim.com/product/material-kit" class="btn btn-primary btn-lg">
+              <i class="fa fa-html5"></i> Free HTML Download
+            </a>
+            <a href="https://themeisle.com/themes/hestia/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website" target="_blank" class="btn btn-primary btn-lg">
+              <i class="fa fa-wordpress"></i> Wordpress Theme
+            </a>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="row text-center">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2>Want more?</h2>
+            <h4>We've just launched
+              <a href="https://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-mk-demos" target="_blank">Material Kit PRO</a>. It has a huge number of components, sections and example pages. Start Your Development With A Badass Bootstrap UI Kit inspired by Material Design.</h4>
+          </div>
+          <div class="col-sm-8 col-md-5 ml-auto mr-auto">
+            <a href="https://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-mk-demos" class="btn btn-rose btn-upgrade btn-lg" target="_blank">
+              <i class="material-icons">unarchive</i> Upgrade to PRO
+            </a>
+          </div>
+        </div>
+        <div class="sharing-area text-center">
+          <div class="row justify-content-center">
+            <h3>Thank you for supporting us!</h3>
+          </div>
+          <button id="twitter" class="btn btn-raised btn-twitter sharrre">
+            <i class="fa fa-twitter"></i> Tweet
+          </button>
+          <button id="facebook" class="btn btn-raised btn-facebook sharrre">
+            <i class="fa fa-facebook-square"></i> Share
+          </button>
+          <button id="googlePlus" class="btn btn-raised btn-google-plus sharrre">
+            <i class="fa fa-google-plus"></i> Share
+          </button>
+          <a id="github" href="https://github.com/creativetimofficial/material-kit" target="_blank" class="btn btn-raised btn-github">
+            <i class="fa fa-github"></i> Star
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Classic Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link">Nice Button</button>
+          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-                        (function(d, s, id){
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) {return;}
-                        js = d.createElement(s); js.id = id;
-                        js.src = "https://connect.facebook.net/en_US/sdk.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));
-
-
-FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
-
-
-    </script>
-
-    <script src="{{asset('js/vendor/jquery-1.12.4.min.js')}}"></script>
-    <script src="{{asset('js/vendor/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/magnific-popup.min.js')}}"></script>
-    <script src="{{asset('js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('js/vendor/jquery-ui.js')}}"></script>
-    <script src="{{asset('js/scrollUp.min.js')}}"></script>
-    <script src="{{asset('js/contact-form.js')}}"></script>
-    <script src="{{asset('js/ajaxchimp.js')}}"></script>
-    <script src="{{asset('js/wow.min.js')}}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
-</body>
-
-</html>
+@endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Alert;
 class HomeController extends Controller
 {
     /**
@@ -23,13 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+      Alert::message('Welcome back! Farhan');
+
         $user = auth::user();
         if ($user) {
           if ($user->role == 3) {
-            return view('Admin.index');
+            return redirect('admin');
           }
           elseif ($user->role == 2) {
-            return view('layouts.Admin');
+            return redirect('petugas');
           }
           else {
             return view('user.index');
@@ -38,5 +41,10 @@ class HomeController extends Controller
         else {
           return view('user.index');
         }
+    }
+
+    public function test()
+    {
+      return view('auth.test');
     }
 }

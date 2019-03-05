@@ -8,14 +8,44 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Ticketing') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('fonts/font_pro.css')}}">
+    <style>
+    .breadcrumb {
+    background-color: #d5ffd4;
+    }
+
+    .btn-hijau {
+    color: #fff;
+    background-color: #83ec99;
+}
+.btn-biru {
+    color: #fff;
+    background-color: #56bdd2;
+}
+.btn-kuning {
+    color: #fff;
+    background-color: #ece659;
+}
+
+.btn-oren {
+    color: #fff;
+    background-color: #f98253;
+    4: ;
+}
+.btn-hijau-toska {
+    color: #fff;
+    background-color: #19dabd;
+}
+
+    </style>
 </head>
 <body>
+    <nav class="navbar navbar-default navbar-static-top">
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -29,7 +59,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    Ticketing
                     </a>
                 </div>
 
@@ -38,43 +68,46 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         @if(Auth::check())
-                        <li><router-link :to="{name: 'IndexDashboard'}" >Home</router-link></li>
+                        {{-- <li class=""><router-link :to="{name: 'IndexDashboard'}" >Home</router-link></li> --}}
+
+                        @if (Auth::user()->role == 3)
+
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Data
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><router-link :to="{name: 'IndexUser'}" >User</router-link></li>
-                                <li><router-link :to="{name: 'IndexProduk'}" >Produk</router-link></li>
-                                <li><router-link :to="{name: 'IndexMobil'}" >Mobil</router-link></li>
-                                <li><router-link :to="{name: 'IndexSupplier'}" >Supplier</router-link></li>
-                                <li><router-link :to="{name: 'IndexDriver'}" >Driver</router-link></li>
-                                <li><router-link :to="{name: 'IndexGudang'}" >Gudang</router-link></li>
-                                <li><router-link :to="{name: 'IndexPelanggan'}" >Pelanggan</router-link></li>
-                                <li><router-link :to="{name: 'IndexAkun'}" >Akun</router-link></li>
-                                <li><router-link :to="{name: 'IndexKartuKredit'}" >Kartu Kredit</router-link></li>
-                                <li><router-link :to="{name: 'IndexPerusahaan'}" >Perusahaan</router-link></li>
+                                <li><a href="{{url('admin/user')}}" >User</a></li>
+                                <li><a href="{{url('admin/plane')}}" >Pesawat</a></li>
+                                <li><a href="{{url('admin/airport')}}" >Bandara</a></li>
+                                <li><a href="{{url('admin/schedule_plane')}}" >Jadwal Pesawat</a></li>
+                                <li><a href="{{url('admin/train')}}" >Kereta</a></li>
+                                <li><a href="{{url('admin/stasiun')}}" >Stasiun</a></li>
+                                <li><a href="{{url('admin/jadwal_kereta')}}" >Jadwal Kereta</a></li>
+                                {{-- <li><a href="{{url('admin/rute')}}" >Rute</a></li> --}}
+
+                                {{-- <li><router-link :to="{name: 'IndexProduk'}" >Pesawat</router-link></li> --}}
+                                {{-- <li><router-link :to="{name: 'IndexMobil'}" >Kereta</router-link></li> --}}
+                                {{-- <li><router-link :to="{name: 'IndexSupplier'}" >Rute</router-link></li> --}}
+                                {{-- <li><router-link :to="{name: 'IndexKartuKredit'}" >Bank</router-link></li> --}}
                             </ul>
                         </li>
+                      @endif
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Laporan
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><router-link :to="{name: 'IndexPosisiKas'}" >Posisi Kas</router-link></li>
-                                <li><router-link :to="{name: 'IndexLaporanTransaksiKas'}" >Transaksi Kas</router-link></li>
-                                <li><router-link :to="{name: 'IndexLaporanJurnalUmum'}" >Jurnal Umum</router-link></li>
-                                <li><router-link :to="{name: 'IndexLaporanNeraca'}" >Neraca</router-link></li>
-                                <li><router-link :to="{name: 'IndexLaporanBukuBesar'}" >Buku Besar</router-link></li>
-                                <li><router-link :to="{name: 'IndexLaporanLabaRugi'}" >Laba Rugi</router-link></li>
+                                {{-- <li><router-link :to="{name: 'IndexLaporanTransaksiKas'}" >Transaksi</router-link></li> --}}
+                                {{-- <li><router-link :to="{name: 'IndexLaporanLabaRugi'}" >Laba Rugi</router-link></li> --}}
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transaksi
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><router-link :to="{name: 'IndexTransaksiKas'}" >Transaksi Kas</router-link></li>
-                                <li><router-link :to="{name: 'IndexTransaksiKartuKredit'}" >Transaksi Kartu Kredit</router-link></li>
-                                <li><router-link :to="{name: 'IndexTransaksiGas'}" >Transaksi Gas</router-link></li>
-                                <li><router-link :to="{name: 'IndexJurnalManual'}" >Jurnal Manual</router-link></li>
+                                {{-- <li><router-link :to="{name: 'IndexTransaksiKas'}" >Transaksi Kas</router-link></li> --}}
+                                {{-- <li><router-link :to="{name: 'IndexTransaksiKartuKredit'}" >Transaksi Kartu Kredit</router-link></li> --}}
+                                {{-- <li><router-link :to="{name: 'IndexTransaksiGas'}" >Transaksi Gas</router-link></li> --}}
+                                {{-- <li><router-link :to="{name: 'IndexJurnalManual'}" >Jurnal Manual</router-link></li> --}}
                             </ul>
                         </li>
                         @endif
@@ -116,6 +149,12 @@
     </div>
 
     <!-- Scripts -->
+    <script src="{{asset('js/sweetalert.min.js')}}"></script>
+    @include('sweet::alert')
     <script src="{{ asset('js/app.js?v=1.0.2') }}"></script>
+    </script>
+    @stack('scripts')
+    </script>
+
 </body>
 </html>
