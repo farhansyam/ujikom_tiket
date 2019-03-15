@@ -22,8 +22,16 @@
   .card-login .card-header {
   margin-top: -68px;
 }
+.card .card-header-primary, .card.bg-primary, .card.card-rotate.bg-primary .front, .card.card-rotate.bg-primary .back {
+  background: linear-gradient(60deg, #4ebbd4, #5cb8f9);
+}
+.btn.btn-primary.btn-link {
+    background-color: transparent;
+    color: #58b8ef;
+    box-shadow: none;
+}
   </style>
-</head> <div class="section section-signup page-header" style="background-image: url('{{asset('images/city.jpg')}}');">
+</head> <div class="section section-signup page-header" style="background-image: url('{{asset('images/12.jpg')}}');">
 
     <body>
       <div class="container">

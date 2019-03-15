@@ -56,6 +56,8 @@
                                   @endforeach
                                 </thead>
                               </table>
+                              {{$plane->links()}}
+
                          </div>
                       </div>
                   </div>

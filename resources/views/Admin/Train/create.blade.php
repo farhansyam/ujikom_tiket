@@ -45,7 +45,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                       <label for="code">Harga:</label>
-                      <input type="number" class="form-control" id="eco_seat" name="eco_seatfare" placeholder="/ kursi" required>
+                      <input type="number" max="9999999999" min="1000" class="form-control" id="eco_seat" name="eco_seatfare" placeholder="/ kursi" required>
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                       <label for="city">Harga:</label>
-                      <input type="number" class="form-control" id="bus_seat" name="bus_seatfare" placeholder="/ kursi" required>
+                      <input type="number" max="999999999" min="1000" class="form-control" id="bus_seat" name="bus_seatfare" placeholder="/ kursi" required>
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                       <label for="city">Harga:</label>
-                      <input type="number" class="form-control" id="bus_seat" name="exec_seatfare" placeholder="/ kursi" required>
+                      <input type="number" max="999999999" min="1000" class="form-control" id="bus_seat" name="exec_seatfare" placeholder="/ kursi" required>
                   </div>
                 </div>
               </div>
@@ -82,7 +82,6 @@
                       <button type="reset" class="btn btn-md btn-kuning">Reset</button>
                   </div>
               </form>
-
                   </div>
               </div>
           </div>

@@ -1,30 +1,36 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\PlaneSchedule;
-use App\Models\DetailBooking;
+use App\PlaneSchedule;
+use App\User;
+use App\DetailBooking;
 
 class Booking extends Model
 {
     protected $fillable = ['user_id','booking_date','status','vehicle','schedule_id'];
     public function detail_booking()
     {
-      return $this->hasOne('App\Models\DetailBooking');
+      return $this->hasOne('App\DetailBooking');
     }
     public function scheP()
     {
-      return $this->hasOne('App\Models\PlaneSchedule', 'id', 'schedule_id');
+      return $this->hasOne('App\PlaneSchedule', 'id', 'schedule_id');
     }
     public function scheT()
     {
-      return $this->hasOne('App\Models\TrainSchedule', 'id', 'schedule_id');
+      return $this->hasOne('App\TrainSchedule', 'id', 'schedule_id');
+    }
+
+    public function users()
+    {
+      return $this->belongsTo('App\User','user_idp');
     }
 
     public function transaction()
     {
-      return $this->hasOne('App\Models\Transaction');
+      return $this->hasOne('App\Transaction');
     }
 
     //

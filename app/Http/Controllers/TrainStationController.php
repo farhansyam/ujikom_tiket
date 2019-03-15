@@ -1,41 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-Use App\Models\TrainStation;
-Use App\Models\Train;
-Use App\Models\TrainFare;
+
+Use App\Train;
+Use App\TrainSchedule;
+Use App\TrainFare;
+Use App\Station;
 
 use Illuminate\Http\Request;
 
 class TrainStationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-      $station = TrainStation::all();
-      return view('admin.train.station.index', compact('station'));
+      $station = Station::paginate(5);
+      return view('admin.station.index', compact('station'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('admin.train.station.create');
+        return view('admin.station.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
       $data = $this->validate($request, [
@@ -43,40 +30,18 @@ class TrainStationController extends Controller
           'code' => 'required',
           'city' => 'required'
       ]);
-      TrainStation::create($data);
-      return redirect('admin/station')->with('success','Berhasil');
+
+      Station::create($data);
+      return redirect('admin/station')->with('create','a');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-      $data = TrainStation::where('id',$id)->get();
-      return view('admin/train/station/edit', compact('data'));
+      $station = Station::where('id',$id)->first();
+      return view('admin/station/edit', compact('station'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
       $data = $this->validate($request, [
@@ -84,20 +49,19 @@ class TrainStationController extends Controller
           'code' => 'required',
           'city' => 'required'
         ]);
-        TrainStation::find($id)->update($data);
-        return redirect('admin/station')->with('success','Berhasil diubah');
+        Station::find($id)->update($data);
+        return redirect('admin/station')->with('edit','a');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-      $data = TrainStation::where('id',$id)->first();
-      $data->delete();
-      return redirect('admin/station')->with('alert-success','Data berhasi dihapus!');
+        Station::destroy($id);
+       return redirect('admin/station')->with('delete','a');
+    }
+
+    public function stationAjax($id)
+    {
+      $airport = Station::whereId($id)->get();
+      return response()->json($airport);
     }
 }

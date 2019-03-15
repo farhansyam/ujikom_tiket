@@ -52,6 +52,7 @@
                                   @endforeach
                                 </thead>
                               </table>
+                              {{$airport->links()}}
                          </div>
                       </div>
                   </div>

@@ -77,7 +77,7 @@ body {
                         <div class="col-md-4">
                           <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
-                              {{-- <h2>&nbsp;Pesawat : {{$pesawat}}</h2> --}}
+                              <h2>&nbsp;Users : {{$users}}</h2>
                               <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                   <i class="fa-2x text-gray-300"></i>
@@ -101,7 +101,20 @@ body {
                         <div class="col-md-4">
                           <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
-                              {{-- <h2>&nbsp;Kereta : {{$kereta}}</h2> --}}
+                              <h2>&nbsp; Pesawat:{{$pesawat}}</h2>
+                              <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                  <i class="fa-2x text-gray-300"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br><br><br><br><br><br><br>
+                        <div class="col-md-4">
+                          <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                              <h2>&nbsp;Kereta : {{$kereta}}</h2>
                               <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                   <i class="fa-2x text-gray-300"></i>

@@ -55,6 +55,7 @@
                               @endforeach
                             </thead>
                           </table>
+                          {{$schedule->links()}}
                          </div>
                       </div>
                   </div>

@@ -1,35 +1,35 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Models\Passenger;
-use App\Models\Booking;
-use App\Models\DetailBooking;
-use App\Models\BankAccount;
-use App\Models\Transaction;
-use DB;
 
-use Auth;
-use Carbon\Carbon;
-use Excel;
+use DB;
 use PDF;
+use Auth;
+use Excel;
+use App\Booking;
+use App\Airport;
+use App\Passenger;
+use Carbon\Carbon;
+use App\BankAccount;
+use App\Transaction;
+use App\DetailBooking;
+
 
 class BookingController extends Controller
 {
     public function __construct()
     {
-      $this->plane = "App\Models\Plane";
-      $this->planeFare = "App\Models\PlaneFare";
-      $this->planeSchedule = "App\Models\PlaneSchedule";
-      $this->train = "App\Models\Train";
-      $this->trainFare = "App\Models\TrainFare";
-      $this->trainSchedule = "App\Models\TrainSchedule";
+      $this->plane = "App\Plane";
+      $this->planeFare = "App\PlaneFare";
+      $this->planeSchedule = "App\PlaneSchedule";
+      $this->train = "App\Train";
+      $this->trainFare = "App\TrainFare";
+      $this->trainSchedule = "App\TrainSchedule";
     }
 
     public function index()
     {
-      $booking = Booking::all();
+      $booking = Booking::with('users')->paginate(5);
       return view('admin.booking.index', compact('booking'));
     }
 
@@ -52,6 +52,7 @@ class BookingController extends Controller
 
     public function search(Request $request)
     {
+
       $request['date'] = date('Y-m-d', strtotime($request->date));
       $request['dateB'] = date('Y-m-d', strtotime($request->dateB));
       if ($request->baby <= $request->adult){
@@ -82,15 +83,13 @@ class BookingController extends Controller
           $seat = 'eco_seat';
         }elseif($request->class == "Bisnis") {
           $seat = 'bus_seat';
-        }elseif($request->class == "First Class"){
-          $seat = 'first_seat';
         }elseif($request->class == "Eksekutif"){
           $seat = 'exec_seat';
         }
         //cek tipe
         if ($type == 'st'){
           $schedule = $model::findSchedule($request->from_code, $request->destination_code, $request->date, $seat, count($total));
-          return view('booking.bookingSingle', compact('schedule', 'vehicle','type','total', 'seat'));
+          return view('user.booking.hasil_cari',compact('schedule','seat','vehicle','total'));
           // return $schedule;
         }elseif($type == 'rt'){
           $scheduleG = $model::findSchedule($request->from_code, $request->destination_code, $request->date, $seat, count($total));
@@ -149,7 +148,7 @@ class BookingController extends Controller
       }else{
         abort(404);
       }
-      return view('booking.bookingFix', compact('schedule','vehicle', 'total', 'totalCount', 'seat', 'class', 'fareTotal', 'bank'));
+      return view('user.booking.booking_fix', compact('schedule','vehicle', 'total', 'totalCount', 'seat', 'class', 'fareTotal', 'bank'));
     }
 
     public function fixOrder(Request $request)
@@ -264,5 +263,11 @@ class BookingController extends Controller
 
       })->get();
       return $data;
+    }
+
+    public function plane()
+    {
+        $airport = Airport::all();
+        return view('user.plane',compact('airport'));
     }
 }

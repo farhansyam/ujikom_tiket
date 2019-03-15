@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use Alert;
 class HomeController extends Controller
 {
     /**
@@ -24,7 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-      Alert::message('Welcome back! Farhan');
 
         $user = auth::user();
         if ($user) {

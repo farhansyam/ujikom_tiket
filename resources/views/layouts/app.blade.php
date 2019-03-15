@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Ticketing') }}</title>
-
+    <script src="{{asset('js/sweetalert.min.js')}}"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('fonts/font_pro.css')}}">
@@ -81,13 +81,9 @@
                                 <li><a href="{{url('admin/airport')}}" >Bandara</a></li>
                                 <li><a href="{{url('admin/schedule_plane')}}" >Jadwal Pesawat</a></li>
                                 <li><a href="{{url('admin/train')}}" >Kereta</a></li>
-                                <li><a href="{{url('admin/stasiun')}}" >Stasiun</a></li>
-                                <li><a href="{{url('admin/jadwal_kereta')}}" >Jadwal Kereta</a></li>
-                                {{-- <li><a href="{{url('admin/rute')}}" >Rute</a></li> --}}
+                                <li><a href="{{url('admin/station')}}" >Stasiun</a></li>
+                                <li><a href="{{url('admin/schedule_train')}}" >Jadwal Kereta</a></li>
 
-                                {{-- <li><router-link :to="{name: 'IndexProduk'}" >Pesawat</router-link></li> --}}
-                                {{-- <li><router-link :to="{name: 'IndexMobil'}" >Kereta</router-link></li> --}}
-                                {{-- <li><router-link :to="{name: 'IndexSupplier'}" >Rute</router-link></li> --}}
                                 {{-- <li><router-link :to="{name: 'IndexKartuKredit'}" >Bank</router-link></li> --}}
                             </ul>
                         </li>
@@ -103,8 +99,9 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transaksi
                             <span class="caret"></span></a>
+
                             <ul class="dropdown-menu">
-                                {{-- <li><router-link :to="{name: 'IndexTransaksiKas'}" >Transaksi Kas</router-link></li> --}}
+                                {{-- <li><router-link :to="Kereta{name: 'IndexTransaksiKas'}" >Transaksi Kas</router-link></li> --}}
                                 {{-- <li><router-link :to="{name: 'IndexTransaksiKartuKredit'}" >Transaksi Kartu Kredit</router-link></li> --}}
                                 {{-- <li><router-link :to="{name: 'IndexTransaksiGas'}" >Transaksi Gas</router-link></li> --}}
                                 {{-- <li><router-link :to="{name: 'IndexJurnalManual'}" >Jurnal Manual</router-link></li> --}}
@@ -147,14 +144,39 @@
 
         @yield('content')
     </div>
-
+    @if (session()->has('delete'))
+      <script>
+      swal({
+        title: "Berhasil Hapus!",
+        text: "Data telah di Hapus Permanen!",
+        icon: "success",
+        button: "Okey!",
+      });
+      </script>
+    @endif
+    @if (session()->has('edit'))
+      <script>
+      swal({
+        title: "Berhasil Edit!",
+        text: "Data telah di Edit!",
+        icon: "success",
+        button: "Okey!",
+      });
+      </script>
+    @endif
+    @if (session()->has('create'))
+      <script>
+      swal({
+        title: "Berhasil Tambah Data!",
+        text: "Data Pesawat Bertambah!",
+        icon: "success",
+        button: "Okey!",
+      });
+      </script>
+    @endif
     <!-- Scripts -->
-    <script src="{{asset('js/sweetalert.min.js')}}"></script>
-    @include('sweet::alert')
     <script src="{{ asset('js/app.js?v=1.0.2') }}"></script>
-    </script>
     @stack('scripts')
-    </script>
 
 </body>
 </html>

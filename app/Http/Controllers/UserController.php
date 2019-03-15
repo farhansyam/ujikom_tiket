@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use Alert;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -120,7 +119,6 @@ class UserController extends Controller
         Transportasi::where('id_transportasi',$id)->delete();
        $deleteUser =  User::destroy($id);
        Transportasi::where('id_transportasi',$id)->delete();
-       Alert::success('Berhasil menghapus data !')->persistent('Confirm');
 
        return redirect('admin/user');
 

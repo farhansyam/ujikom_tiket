@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Alert;
 Use App\Train;
 Use App\TrainFare;
 Use App\TrainStation;
@@ -14,7 +13,7 @@ class TrainController extends Controller
 {
     public function index()
     {
-      $train = Train::with('trainfare')->get();
+      $train = Train::with('trainfare')->paginate(5);
       return view('admin.train.index',compact('train'));
     }
 
@@ -39,13 +38,12 @@ class TrainController extends Controller
       $trainfare->exec_seat = $request->exec_seatfare;
       $trainfare->unique_code = mt_rand(100,999);
       $trainfare->save();
-      Alert::success('Berhasil Tambah Data');
-      return redirect('admin/train');
+      return redirect('admin/train')->with('create','a');
     }
 
     public function edit($id)
     {
-      $data = Train::where('id',$id)->with('trainfare')->get();
+      $data = Train::whereId($id)->with('trainfare')->first();
       return view('admin/train/edit', compact('data'));
     }
 
@@ -57,21 +55,24 @@ class TrainController extends Controller
       $train->bus_seat    = $request->bus_seat;
       $train->exec_seat   = $request->exec_seat;
       $train->save();
-
       $trainfare = TrainFare::findOrFail($request->id);
       $trainfare->eco_seat    = $request->eco_seatfare;
       $trainfare->bus_seat    = $request->bus_seatfare;
       $trainfare->exec_seat   = $request->exec_seatfare;
       $trainfare->save();
 
-      Alert::success("Berhasil Update Data");
-      return redirect('admin/train')->with('alert-success','Data berhasil diubah!');
+      return redirect('admin/train')->with('edit','a');
     }
     public function destroy($id)
     {
       Train::destroy($id);
-      Alert::success("berhasil Hapus data");
-      return redirect('admin/train');
+      return redirect('admin/train')->with('delete','a');
+    }
+
+    public function trainAjax($id)
+    {
+      $plane = Train::whereId($id)->get();
+      return response()->json($plane);
     }
 
 }

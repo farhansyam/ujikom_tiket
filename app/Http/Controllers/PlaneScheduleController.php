@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Alert;
 use Illuminate\Http\Request;
 use App\PlaneSchedule;
 use App\PlaneFare;
@@ -12,22 +11,12 @@ use App\Airport;
 
 class PlaneScheduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-      $schedule = PlaneSchedule::with('airport','plane')->get();
+      $schedule = PlaneSchedule::with('airport','plane')->paginate(5);
       return view('admin.plane.schedule.index',compact('schedule'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
@@ -36,12 +25,6 @@ class PlaneScheduleController extends Controller
       return view('admin.plane.schedule.create',compact('plane','airport'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
       $destination = Airport::find($request->destination);
@@ -58,18 +41,14 @@ class PlaneScheduleController extends Controller
       $planeschedule->duration          = $request->duration;
       $planeschedule->save();
 
-      Alert::success('Berhasil Input data !');
 
-      return redirect('admin/schedule_plane/');
+      return redirect('admin/schedule_plane/')->with('create','a');
     }
-
-
 
     public function destroy($id)
     {
       PlaneSchedule::destroy($id);
-      Alert::success('Berhasil menghapus data !');
-      return redirect('admin/plane');
+      return redirect('admin/plane')->with('delete','a');
     }
 
     public function show($id)
@@ -88,12 +67,13 @@ class PlaneScheduleController extends Controller
 
     public function edit($id)
     {
-      $planeschedule = PlaneSchedule::where('id',$id)->with('Plane')->first();
-
-      $id_destination = Airport::select('id')->where('airport_name',$planeschedule->destination)->first();
+      $planeschedule = PlaneSchedule::where('id',$id)->with('Plane')->get();
+      $planeschedulee = PlaneSchedule::where('id',$id)->with('Plane')->first();
+      $asal = Airport::select('id')->whereCode($planeschedulee->destination_code)->first();
+      $destination = Airport::select('id')->where('airport_name',$planeschedulee->destination)->first();
       $plane = Plane::select("plane_name","id")->get();
       $airport = Airport::select("airport_name","id")->get();
-      return view('admin.plane.schedule.edit',compact('planeschedule','plane','airport','id_destination'));
+      return view('admin.plane.schedule.edit',compact('planeschedule','planeschedulee','plane','airport','id_destination','asal'));
     }
 
     public function update(Request $request, $id)
@@ -111,14 +91,7 @@ class PlaneScheduleController extends Controller
       $planeschedule->boarding_time     = $request->boarding_time;
       $planeschedule->duration          = $request->duration;
       $planeschedule->save();
-      Alert::success('Sukses Edit');
-      return redirect('admin/schedule_plane');
+      return redirect('admin/schedule_plane')->with('edit','a');
     }
 
-    public function destroySchedule($id)
-    {
-      $data = PlaneSchedule::where('id',$id)->first();
-      $data->delete();
-      return redirect('admin/schedule_plane/');
-    }
 }

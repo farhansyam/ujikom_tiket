@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Alert;
 use Illuminate\Http\Request;
 use App\PlaneSchedule;
 use App\PlaneFare;
@@ -19,7 +18,7 @@ class PlaneController extends Controller
      */
     public function index()
     {
-      $plane = Plane::with('planefare')->get();
+      $plane = Plane::with('planefare')->paginate(5);
       return view('admin.plane.index',compact('plane'));
     }
 
@@ -42,6 +41,7 @@ class PlaneController extends Controller
     public function store(Request $request)
     {
 
+
       $plane = new Plane();
       $plane->plane_name  = $request->plane_name;
       $plane->eco_seat    = $request->eco_seat;
@@ -56,8 +56,7 @@ class PlaneController extends Controller
       $planeFare->save();
 
 
-      Alert::success('Berhasil Input data !');
-      return redirect('admin/plane')->with('alert-success','Berhasil Menambah Data!');
+      return redirect('admin/plane')->with('create','aas');
     }
 
     public function show($id)
@@ -85,18 +84,16 @@ class PlaneController extends Controller
       $planefare->bus_seat    = $request->bus_seatfare;
       $planefare->save();
 
-      Alert::success('Berhasil Edit data !');
-      return redirect('admin/plane');
+      return redirect('admin/plane')->with('edit','a');
     }
 
     public function destroy($id)
     {
       Plane::destroy($id);
-      Alert::success('Berhasil menghapus data !');
-      return redirect('admin/plane');
+      return redirect('admin/plane')->with('delete','asd');
     }
 
-  
+
     public function planeAjax($id)
     {
       $plane = Plane::where("id",$id)->get();

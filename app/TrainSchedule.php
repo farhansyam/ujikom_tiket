@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
@@ -10,11 +10,11 @@ class TrainSchedule extends Model
     protected $fillable = ['id','station_id','train_id','from','destination','from_code','destination_code','boarding_time','duration','eco_seat','bus_seat','exec_seat','platform'];
     public function train()
     {
-      return $this->belongsTo('App\Models\Train');
+      return $this->belongsTo('App\Train');
     }
     public function station()
     {
-      return $this->belongsTo('App\Models\TrainStation');
+      return $this->belongsTo('App\Station');
     }
 
     public static function findSchedule($from, $destination, $date, $seat, $total)

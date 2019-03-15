@@ -17,12 +17,22 @@
   <link href="{{asset('css/material-kit.css?v=2.0.5')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('css/demo.css')}}" rel="stylesheet" />
+<style media="screen">
+.card .card-header-primary, .card.bg-primary, .card.card-rotate.bg-primary .front, .card.card-rotate.bg-primary .back {
+  background: linear-gradient(60deg, #4ebbd4, #5cb8f9);
+}
+.btn.btn-primary.btn-link {
+    background-color: transparent;
+    color: #58b8ef;
+    box-shadow: none;
+}
+</style>
 </head> <div class="section section-signup page-header" style="background-image: url('{{asset('images/city.jpg')}}');">
 
     <body>
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+          <div class="col-lg-4 col-md-6 ml-1 mr-auto">
               <br><br><br>
             <div class="card card-login">
             <form class="form" method="post" action="{{route('login')}}">
@@ -70,8 +80,9 @@
                 </div>
                          @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Lupa Password ?') }}
+                                        {{ __('Lupa Password ?') }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </a>
+                                  <a href="{{url('register')}}" class="btn btn-link">Register</a>
                                 @endif
                 <div class="footer text-center">
                   <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Login</button>

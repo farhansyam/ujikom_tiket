@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                       <label for="nama">Nama Pesawat:</label>
-                      <input type="text" class="form-control" id="plane_name" name="plane_name" required>
+                      <input placeholder="Ex:Boing 747" type="text" class="form-control" id="plane_name" name="plane_name" required>
                   </div>
                 </div>
               </div>
@@ -39,13 +39,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                       <label for="code">Kursi Ekonmi:</label>
-                      <input type="text" class="form-control" id="eco_seat" name="eco_seat" required>
+                      <input type="text" placeholder="Jumlah" class="form-control" id="eco_seat" name="eco_seat" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                       <label for="code">Harga:</label>
-                      <input type="number" class="form-control" id="eco_seat" name="eco_seatfare" placeholder="/ kursi" required>
+                      <input type="number" max="9999999999" min="1000" class="form-control" id="eco_seat"  name="eco_seatfare" placeholder="/ kursi" required>
                   </div>
                 </div>
               </div>
@@ -53,13 +53,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                       <label for="city">Kursi Bisnis:</label>
-                      <input type="text" class="form-control" id="bus_seat" name="bus_seat" required>
+                      <input type="text" placeholder="Jumlah" class="form-control" id="bus_seat" name="bus_seat" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                       <label for="city">Harga:</label>
-                      <input type="number" class="form-control" id="bus_seat" name="bus_seatfare" placeholder="/ kursi" required>
+                      <input type="number" max="9999999999" min="1000" class="form-control" id="bus_seat" name="bus_seatfare" placeholder="/ kursi" required>
                   </div>
                 </div>
               </div>

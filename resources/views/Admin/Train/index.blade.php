@@ -60,6 +60,7 @@
                                   @endforeach
                                 </thead>
                               </table>
+                              {{$train->links()}}
                          </div>
                       </div>
                   </div>

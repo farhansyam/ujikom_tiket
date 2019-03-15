@@ -19,11 +19,11 @@ class PlaneSchedule extends Model
 
     public static function findSchedule($from, $destination, $date, $seat, $total)
     {
+
       $dataSchedule = DB::table('plane_schedules')
         ->join('planes', 'planes.id', '=', 'plane_schedules.plane_id')
         ->join('plane_fares', 'plane_fares.plane_id','=','plane_schedules.plane_id')
         ->select('plane_schedules.id',
-                'plane_schedules.gate',
                 'plane_schedules.from',
                 'plane_schedules.destination',
                 'plane_schedules.boarding_time',
@@ -46,7 +46,6 @@ class PlaneSchedule extends Model
         ->join('plane_fares', 'plane_fares.plane_id','=','plane_schedules.plane_id')
         ->select('plane_schedules.from',
                 'plane_schedules.id',
-                'plane_schedules.gate',
                 'plane_schedules.destination',
                 'plane_schedules.boarding_time',
                 'planes.plane_name',
@@ -59,6 +58,7 @@ class PlaneSchedule extends Model
     }
     public static function findPrice($id, $seat)
     {
+
       $data = DB::table('plane_schedules')
                 ->join('plane_fares', 'plane_fares.plane_id', '=', 'plane_schedules.plane_id')
                 ->select(
