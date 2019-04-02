@@ -27,6 +27,18 @@
               @endif
               <form action="{{ url('admin/train') }}" method="post">
                   {{ csrf_field() }}
+               <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="maskapai">Partner</label>
+                      <select name="kereta" class="form-control">
+                        @foreach ($partner as $data)
+                      <option value="{{$data->id}}">{{$data->nama}}</option>
+                        @endforeach
+                      </select>
+                  </div>
+                </div>
+              </div>   
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">

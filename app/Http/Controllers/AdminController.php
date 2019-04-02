@@ -1,20 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
+use Carbon\Carbon;
 use App\Plane;
 use App\Train;
 use App\User;
+use App\partner;
+use App\Booking;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
-      $pesawat = Plane::all()->count();
-      $kereta = Train::all()->count();
-      $users = User::whereRole('1')->count();
+      $train = Train::count();
+      $plane = Plane::count();
+      $partner = partner::count();
+      $user = User::count();
 
-      return view('admin.index',compact('pesawat','kereta','users'));
+        $chart= Booking::getJumlahBookingPerBulan();
+        return view('admin.index',compact('train','plane','user','partner','chart'));
     }
 }

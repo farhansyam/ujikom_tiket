@@ -28,6 +28,18 @@
               <form action="{{ url('admin/plane') }}" method="post">
                   {{ csrf_field() }}
               <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="maskapai">Maskapai</label>
+                      <select name="maskapai" class="form-control">
+                        @foreach ($partner as $data)
+                      <option value="{{$data->id}}">{{$data->nama}}</option>
+                        @endforeach
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                       <label for="nama">Nama Pesawat:</label>

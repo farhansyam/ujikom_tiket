@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plane extends Model
 {
-    protected $fillable = ['plane_name','eco_seat','bus_seat'];
+    protected $fillable = ['plane_name','eco_seat','bus_seat','maskapai'];
 
     public function planeSchedule()
     {
@@ -15,5 +15,10 @@ class Plane extends Model
     public function planeFare()
     {
       return $this->hasOne('App\PlaneFare');
+    }
+
+    public function partner()
+    {
+      return $this->belongsTo('App\partner','maskapai');
     }
 }

@@ -7,7 +7,7 @@ use DB;
 
 class TrainSchedule extends Model
 {
-    protected $fillable = ['id','station_id','train_id','from','destination','from_code','destination_code','boarding_time','duration','eco_seat','bus_seat','exec_seat','platform'];
+    protected $fillable = ['id','station_id','train_id','from','destination','from_code','destination_code','boarding_time','duration','eco_seat','bus_seat','exec_seat'];
     public function train()
     {
       return $this->belongsTo('App\Train');
@@ -23,7 +23,6 @@ class TrainSchedule extends Model
         ->join('trains', 'trains.id', '=', 'train_schedules.train_id')
         ->join('train_fares', 'train_fares.train_id','=','train_schedules.train_id')
         ->select('train_schedules.id',
-                'train_schedules.platform',
                 'train_schedules.from',
                 'train_schedules.destination',
                 'train_schedules.boarding_time',
@@ -46,7 +45,6 @@ class TrainSchedule extends Model
         ->join('train_fares', 'train_fares.train_id','=','train_schedules.train_id')
         ->select('train_schedules.from',
                 'train_schedules.id',
-                'train_schedules.platform',
                 'train_schedules.destination',
                 'train_schedules.boarding_time',
                 'trains.train_name',

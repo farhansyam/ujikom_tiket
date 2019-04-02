@@ -6,7 +6,7 @@ Use App\Train;
 Use App\TrainFare;
 Use App\TrainStation;
 Use App\TrainSchedule;
-
+use App\partner;
 use Illuminate\Http\Request;
 
 class TrainController extends Controller
@@ -19,7 +19,8 @@ class TrainController extends Controller
 
     public function create()
     {
-      return view('admin.train.create');
+      $partner = partner::whereJenis(2)->get();
+      return view('admin.train.create',compact('partner'));
     }
 
     public function store(Request $request)
@@ -29,6 +30,7 @@ class TrainController extends Controller
       $train->eco_seat    = $request->eco_seat;
       $train->bus_seat    = $request->bus_seat;
       $train->exec_seat  = $request->exec_seat;
+      $train->kereta  = $request->kereta;
       $train->save();
 
       $trainfare = new TrainFare();
@@ -43,8 +45,11 @@ class TrainController extends Controller
 
     public function edit($id)
     {
+      $partner = partner::whereJenis(2)->get();
+      
       $data = Train::whereId($id)->with('trainfare')->first();
-      return view('admin/train/edit', compact('data'));
+      // dd($data->trainFare->eco_seat);
+      return view('admin/train/edit', compact('data','partner'));
     }
 
     public function update(Request $request, $id)
@@ -54,6 +59,7 @@ class TrainController extends Controller
       $train->eco_seat    = $request->eco_seat;
       $train->bus_seat    = $request->bus_seat;
       $train->exec_seat   = $request->exec_seat;
+      $train->kereta   = $request->kereta;
       $train->save();
       $trainfare = TrainFare::findOrFail($request->id);
       $trainfare->eco_seat    = $request->eco_seatfare;

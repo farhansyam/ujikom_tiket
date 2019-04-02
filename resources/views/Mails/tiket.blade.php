@@ -281,10 +281,10 @@ text-align: center;
 <div class="main-content">
   <div class="ticket">
     <div class="ticket__main">
-      <div class="header">Hogwarts Express</div>
+      <div class="header">Garuda Indonesia</div>
       <div class="info passenger">
         <div class="info__item">Passenger</div>
-        <div class="info__detail">Hermione J. Granger</div>
+        <div class="info__detail">M .Farhan Syamsuddin</div>
       </div>
       <div class="info platform"> <span>Depart </span><span>from </span><span>platform</span>
         <div class="number">

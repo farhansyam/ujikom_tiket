@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\PlaneSchedule;
 use App\PlaneFare;
 use App\Plane;
+use App\partner;
 use App\Airport;
 
 class PlaneController extends Controller
@@ -18,7 +19,7 @@ class PlaneController extends Controller
      */
     public function index()
     {
-      $plane = Plane::with('planefare')->paginate(5);
+      $plane = Plane::with('planefare','partner')->paginate(5);
       return view('admin.plane.index',compact('plane'));
     }
 
@@ -29,7 +30,8 @@ class PlaneController extends Controller
      */
     public function create()
     {
-      return view('admin.plane.create');
+      $partner = partner::whereJenis(1)->get();
+      return view('admin.plane.create',compact('partner'));
     }
 
     /**
@@ -46,6 +48,7 @@ class PlaneController extends Controller
       $plane->plane_name  = $request->plane_name;
       $plane->eco_seat    = $request->eco_seat;
       $plane->bus_seat    = $request->bus_seat;
+      $plane->maskapai    = $request->maskapai;
       $plane->save();
 
       $planeFare = new PlaneFare();
@@ -59,15 +62,9 @@ class PlaneController extends Controller
       return redirect('admin/plane')->with('create','aas');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
-      $data = Plane::where('id',$id)->with('planefare')->first();
-
+      $data = Plane::whereId($id)->with('planefare')->first();
       return view('admin.plane.edit', compact('data'));
     }
 

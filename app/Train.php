@@ -14,4 +14,9 @@ class Train extends Model
     {
       return $this->hasOne('App\TrainFare');
     }
+
+    public function Train()
+    {
+      return $this->belongsTo('App\partner','kereta');
+    }
 }

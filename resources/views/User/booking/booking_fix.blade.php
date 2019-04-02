@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master_ui')
 @section('tittle')
 <title>{{config('app.name')}} - Pemesanan</title>
 @stop
@@ -25,14 +25,7 @@
             <div class="panel-body">
               <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 @foreach ($bank as $b)
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                      <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{$b->bank}}" aria-expanded="false" aria-controls="{{$b->bank}}">
-                          <label> {{$b->bank}} </label>
-                        </a>
-                      </h4>
-                    </div>
+                    <input type="radio" name="bank" value="{{$b->bank}}">{{$b->bank}}
                     <div id="{{$b->bank}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                       <div class="panel-body">
                         <div class="form-group">
@@ -101,11 +94,9 @@
                 @if ($vehicle == 'plane')
                   <p>{{$s->plane_name}}</p>
                   <p>{{$class}}</p>
-                  <p>Gerbang {{$s->gate}}</p>
                 @elseif($vehicle == 'train')
                   <p>{{$s->train_name}}</p>
                   <p>{{$class}}</p>
-                  <p>Peron {{$s->platform}}</p>
                 @endif
                 <p>{{ date('d F Y H:i:s', strtotime($s->boarding_time)) }}</p>
                 <p>IDR {{number_format($s->$seat * $totalCount +$s->unique_code, 2, ',','.')}}</p>

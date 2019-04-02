@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Booking;
-use App\Models\Passenger;
+use App\Booking;
+use App\Passenger;
 
 class DetailBooking extends Model
 {

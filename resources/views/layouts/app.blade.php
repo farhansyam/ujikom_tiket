@@ -1,23 +1,37 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<title>Go tiket</title>
 
-    <title>{{ config('app.name', 'Ticketing') }}</title>
-    <script src="{{asset('js/sweetalert.min.js')}}"></script>
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('fonts/font_pro.css')}}">
-    <style>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
+
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{{asset('css/light-bootstrap-dashboard.css?v=1.4.0')}}" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{{asset('css/demo.css')}}" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+<link rel="stylesheet" href="{{asset('fonts/font_pro.css')}}">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="{{asset('css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
+ <style>
     .breadcrumb {
     background-color: #d5ffd4;
     }
-
     .btn-hijau {
     color: #fff;
     background-color: #83ec99;
@@ -30,7 +44,6 @@
     color: #fff;
     background-color: #ece659;
 }
-
 .btn-oren {
     color: #fff;
     background-color: #f98253;
@@ -40,143 +53,215 @@
     color: #fff;
     background-color: #19dabd;
 }
-
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-    <div id="app">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
+<div class="wrapper">
+    <div class="sidebar" data-color="purple" data-image="img/sidebar-5.jpg">
+
+    <!--
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="" class="simple-text">
+                    Administrator
+                </a>
+            </div>
+
+            <ul class="nav">
+                @if(Auth::user()->role == 2)
+                <li class="{{set_active('admin')}}">
+                    <a href="{{url('admin')}}">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="{{set_active('booking.index')}}">
+                        <a href="{{('booking')}}">
+                                <i class="pe-7s-cash"></i>
+                                <p>Data Booking</p>
+                            </a>
+                        </li>
+                        
+            <li>
+                <a href="maps.html">
+                    <i class="pe-7s-copy-file"></i>
+                    <p>Laporan</p>
+                </a>
+            </li>
+                @endif
+                @if(Auth::user()->role == 3)
+                     <li class="{{set_active('admin')}}">
+                    <a href="{{url('admin')}}">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="{{set_active('booking.index')}}">
+                        <a href="{{url('admin/booking')}}">
+                                <i class="pe-7s-cash"></i>
+                                <p>Data Booking</p>
+                            </a>
+                        </li>
+                        <li class="{{set_active('user.index')}}">
+                                <a href="{{url('admin/user')}}">
+                                    <i class="pe-7s-user"></i>
+                                    <p>Data Users</p>
+                                </a>
+                            </li>
+            <li>
+                <a href="maps.html">
+                    <i class="pe-7s-copy-file"></i>
+                    <p>Laporan</p>
+                </a>
+            </li>
+            <li class="{{set_active('petugas')}}">
+                    <a href="{{url('admin/petugas')}}">
+                        <i class="pe-7s-id"></i>
+                        <p>Data Petugas</p>
+                    </a>
+                </li>
+            <li class="{{set_active('plane.index')}}">
+                    <a href="{{url('admin/plane')}}">
+                        <i class="pe-7s-plane"></i>
+                        <p>Pesawat</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="typography.html">
+                        <i class="pe-7s-car"></i>
+                        <p>Kereta</p>
+                    </a>
+                </li>
+            <li class="{{set_active('jadwal')}}">
+                    <a href="{{url('admin/schedule')}}">
+                        <i class="pe-7s-date"></i>
+                        <p>Jadwal Rute</p>
+                    </a>
+                </li>
+            <li class="{{set_active('partner.index')}}">
+                    <a href="{{url('admin/partner')}}">
+                        <i class="pe-7s-science"></i>
+                        <p>Partner</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="maps.html">
+                        <i class="pe-7s-config"></i>
+                        <p>Config</p>
+                    </a>
+                </li>
+              @endif  
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                    Ticketing
-                    </a>
+                    <a class="navbar-brand" href="#">Dashboard</a>
                 </div>
+                <div class="collapse navbar-collapse">
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                        @if(Auth::check())
-                        {{-- <li class=""><router-link :to="{name: 'IndexDashboard'}" >Home</router-link></li> --}}
-
-                        @if (Auth::user()->role == 3)
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Data
-                            <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{url('admin/user')}}" >User</a></li>
-                                <li><a href="{{url('admin/plane')}}" >Pesawat</a></li>
-                                <li><a href="{{url('admin/airport')}}" >Bandara</a></li>
-                                <li><a href="{{url('admin/schedule_plane')}}" >Jadwal Pesawat</a></li>
-                                <li><a href="{{url('admin/train')}}" >Kereta</a></li>
-                                <li><a href="{{url('admin/station')}}" >Stasiun</a></li>
-                                <li><a href="{{url('admin/schedule_train')}}" >Jadwal Kereta</a></li>
-
-                                {{-- <li><router-link :to="{name: 'IndexKartuKredit'}" >Bank</router-link></li> --}}
-                            </ul>
-                        </li>
-                      @endif
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Laporan
-                            <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                {{-- <li><router-link :to="{name: 'IndexLaporanTransaksiKas'}" >Transaksi</router-link></li> --}}
-                                {{-- <li><router-link :to="{name: 'IndexLaporanLabaRugi'}" >Laba Rugi</router-link></li> --}}
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transaksi
-                            <span class="caret"></span></a>
-
-                            <ul class="dropdown-menu">
-                                {{-- <li><router-link :to="Kereta{name: 'IndexTransaksiKas'}" >Transaksi Kas</router-link></li> --}}
-                                {{-- <li><router-link :to="{name: 'IndexTransaksiKartuKredit'}" >Transaksi Kartu Kredit</router-link></li> --}}
-                                {{-- <li><router-link :to="{name: 'IndexTransaksiGas'}" >Transaksi Gas</router-link></li> --}}
-                                {{-- <li><router-link :to="{name: 'IndexJurnalManual'}" >Jurnal Manual</router-link></li> --}}
-                            </ul>
-                        </li>
-                        @endif
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                        </li>
+                        <li>
+                               <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                        </li>
+						<li class="separator hidden-lg"></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        @yield('content')
+
+        <div class="content">
+            <div class="container-fluid">          
+                <div class="row">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <p class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="https/www.gits">Creative Tim</a>, made with love for a better web
+                </p>
+            </div>
+        </footer>
+
     </div>
-    @if (session()->has('delete'))
-      <script>
-      swal({
-        title: "Berhasil Hapus!",
-        text: "Data telah di Hapus Permanen!",
-        icon: "success",
-        button: "Okey!",
-      });
-      </script>
-    @endif
-    @if (session()->has('edit'))
-      <script>
-      swal({
-        title: "Berhasil Edit!",
-        text: "Data telah di Edit!",
-        icon: "success",
-        button: "Okey!",
-      });
-      </script>
-    @endif
-    @if (session()->has('create'))
-      <script>
-      swal({
-        title: "Berhasil Tambah Data!",
-        text: "Data Pesawat Bertambah!",
-        icon: "success",
-        button: "Okey!",
-      });
-      </script>
-    @endif
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js?v=1.0.2') }}"></script>
-    @stack('scripts')
+</div>
+
 
 </body>
+
+    <!--   Core JS Files   -->
+    <script src="{{asset('js/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
+	<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/sweetalert.min.js')}}"></script>
+    @if (session('create'))
+    <script>
+        swal({
+                title: "Berhasil!",
+                text: "Berhasi Insert Data",
+                icon: "success",
+            });
+
+    </script>
+@endif
+@if (session('edit'))
+    <script>
+        swal({
+                title: "Sukses edit Data",
+                icon: "success",
+            });
+
+    </script>
+@endif
+@if (session('delete'))
+    <script>
+        swal({
+                title: "Sukses Delete Data",
+                icon: "success",
+            });
+
+    </script>
+@endif
+
+    @stack('scripts')
+
+    <!--  Notifications Plugin    -->
+    <script src="{{asset('js/bootstrap-notify.js')}}"></script>
+
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="{{asset('js/light-bootstrap-dashboard.js?v=1.4.0')}}"></script>
+
+	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+	<script src="{{asset('js/demo.js')}}"></script>
+
+	
 </html>

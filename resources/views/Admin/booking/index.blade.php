@@ -2,9 +2,7 @@
 
   @section('content')
 
-      <div class="container">
-            <div class="row">
-              <div class="col-md-8 col-md-offset-2">
+              <div class="col-md-12">
                   <ul class="breadcrumb">
                     <li class="active">Admin</li>
                     <li class="active">Booking</li>
@@ -17,10 +15,6 @@
                       <div class="panel-body">
 
                           <div class="table-responsive">
-                          <div align="right">
-                         Pencarian
-                          <input type="text" v-bind:style="{width: '20%' }" v-model="pencarian" class="form-control" />
-                          </div>
 
                               <table class="table" border="0" width="200">
                                 <thead>
@@ -30,26 +24,37 @@
                                       <th>Kode Booking</th>
                                       <th>Transportasi</th>
                                       <th>Total</th>
-                                      <th>Expireb bdgwrwgt2ngaggggggqmagrh3wh6txuxkxlx; v</th>
+                                      <th>Status</th>
+                                      <th>Expire</th>
                                       <th>Opsi</th>
-                                      
+
                                   </tr>
                                   </thead>
                                   <tbody>
                                   @foreach($booking as $data)
-                                      <tr>
-                                          <td>{{ $loop->iteration }}</td>
-                                          <td>{{ $data->users->name }}</td>
-                                          <td>{{ $data->booking_code }}</td>
-                                          <td>{{ $data->vehicle }}</td>
-                                          <td>{{ $data->bill }}</td>
+                                  <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data->users->name }}</td>
+                                    <td>{{ $data->booking_code }}</td>
+                                    <td>{{ $data->vehicle }}</td>
+                                    <td>{{ $data->bill }}</td>
+                                    <td>@if($data->transaction->status == 0)
+                                        <a style="background-color:red;color:white">Belum Bayar</a>
+                                        @else
+                                        <a style="background-color:greenyellow;color:white">Di Bayar</a>
+                                        @endif
+                                    </td>
                                           <td>{{ $data->expire }}</td>
                                           <td>
-                                              <form action="{{ url('admin/airport', $data->id) }}" method="post">
+                                              <form action="{{ url('admin/booking', $data->id) }}" method="post">
                                                   {{ csrf_field() }}
                                                   {{ method_field('delete') }}
-                                                  <a href="{{ url('admin/airport/'.$data->id.'/edit') }}" class=" btn btn-sm btn-hijau fa fa-edit"></a>
-                                                  <button class="btn btn-sm btn-oren fa fa-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"></button>
+                                                  <button class="btn btn-sm btn-oren" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"><i class="fa fa-trash"></i></button>
+                                                  @if($data->transaction->status == 0)
+                                                  <a href="{{ url('admin/booking/'.$data->id.'/edit') }}" class=" btn btn-sm btn-biru"><i class=" fa fa-check"></i></a>
+                                                  @else
+                                                  <a href="{{ url('admin/booking/'.$data->id.'/'.$data->users->email.'/tiket') }}" class=" btn btn-sm btn-hijau"><i class=" fa fa-ticket-alt"></i></a>
+                                                  @endif
                                               </form>
                                           </td>
                                       </tr>
@@ -61,9 +66,6 @@
                       </div>
                   </div>
               </div>
-          </div>
-      </div>
 
-    {{-- </div> --}}
 
   @endsection

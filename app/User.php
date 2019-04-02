@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     public $guarded = [];
@@ -17,6 +17,6 @@ class User extends Authenticatable
     public function Booking()
     {
        return $this->hasMany('App\Booking');
-    }
+    }   
 
 }

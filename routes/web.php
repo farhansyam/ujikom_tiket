@@ -7,31 +7,38 @@ Route::get('/', 'HomeController@index');
 Route::get('/test','HomeController@test');
 
 Route::get('/airport','AirportController@cek');
-Route::get('/airport','AirportController@cek');
 Route::get('/plane','BookingController@plane');
+Route::get('/train','BookingController@train');
 Route::post('/search','BookingController@search')->name('search');
+Route::get('/order',function()
+{
+    return redirect('/');
+});
 Route::post('/order','BookingController@order')->name('order');
 // User sudah Login
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => ['auth','verified']],function(){
+
   Route::get('/profile', 'UserController@profile');
+  Route::post('/booking/fixOrder','BookingController@fixOrder');
 
 });
 
 // Admin
 Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
+  Route::get('/', 'AdminController@index')->name('admin');
   // Ajax
   Route::get('plane/ajax/{id}','PlaneController@planeAjax');
   Route::get('airport/ajax/{id}','AirportController@airportAjax');
   Route::get('train/ajax/{id}','TrainController@trainAjax');
   Route::get('station/ajax/{id}','TrainStationController@stationAjax');
 
-       Route::get('/', 'AdminController@index')->name('admin');
+  // Master DATA
        // Pesawat
        Route::resource('plane', 'PlaneController');
-       // Jadwal Penerbangan
-       Route::resource('airport', 'AirportController');
        //  Bandara
+       Route::resource('airport', 'AirportController');
+       // Jadwal Penerbangan
        Route::resource('schedule_plane', 'PlaneScheduleController');
 
        // Kereta
@@ -41,30 +48,44 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
        // Jadwal Kereta
        Route::resource('schedule_train', 'TrainScheduleController');
 
-       Route::resource('/tes','test');
+       // ATM
+       Route::resource('atm', 'AtmController');
 
+      Route::resource('/tes','test');
+
+      Route::get('schedule',function()
+      { 
+        return view('admin.schedule.index_schedule');
+      })->name('jadwal');
       //  Data Booking
-        Route::get('booking','BookingController@index');
+        Route::resource('booking','BookingController');
 
+        // Kirim Tiket
+        Route::get('booking/{id}/{email}/tiket','BookingController@tiket');
+
+        Route::get('petugas','UserController@petugas')->name('petugas');
+      // Partner
+       Route::resource('partner', 'PartnerController');
+      
 // Ujicoba
 Route::get('/user/view', 'UserController@index');
 Route::get('/user/search', 'UserController@search');
 Route::get('/user/{id}/konfirmasi', 'UserController@konfirmasiUser');
 Route::resource('user','UserController');
 
-  //  Route::resource('/users','UserController');
-
-
-
-
 });
+
+
+
+
 
 // Kuhusus Petugas
 Route::group(['prefix' => 'petugas','middleware' => 'Petugas'],function(){
   Route::get('/', 'PetugasController@index')->name('petugas');
 });
-Auth::routes();
 
+Auth::routes(['verify' => true]);
 
+// Login Facebook
 Route::get('/redirect', 'FacebookLoginController@redirect');
 Route::get('/callback', 'FacebookLoginController@callback');

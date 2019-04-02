@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Tik-Ketik
+    Go tiket
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -15,7 +15,7 @@
   {{-- <link rel="stylesheet" href="{{asse  t('fonts/font_pro.css')}}"> --}}
   {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> --}}
   <!-- CSS Files -->
-  <link href="{{asset('css/material-kit.css?v=2.0.5')}}" rel="stylesheet" />
+  <link href="{{asset('css/material-kit.min.css?v=2.0.5')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 
   <link href="{{asset('css/demo.css')}}" rel="stylesheet" />
@@ -51,7 +51,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="{{url('kereta')}}" class="nav-link" rel="tooltip" title="" data-placement="bottom" data-original-title="Kereta">
+            <a href="{{url('train')}}" class="nav-link" rel="tooltip" title="" data-placement="bottom" data-original-title="Kereta">
               <i class="fa fa-train"></i>
             </a>
           </li>
@@ -65,13 +65,10 @@
              <i class="fas fa-question-circle" style="font-size:20px"></i>
            </a>
           </li>
-          <li class="nav-item">
-           <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" data-original-title="Cek Pesanan">
-             <i class="fa fa-search"></i>
-           </a>
-          </li>
            @if (auth::user())
-
+          <li class="nav-item">
+          <a class="nav-link" href="">My Order</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('profile') }}">
               {{str_limit(auth::user()->name,8)}}
@@ -161,7 +158,7 @@
 
   </script>
   @stack('scripts')
-
+  
 </body>
 
 </html>

@@ -6,6 +6,7 @@ use DB;
 use PDF;
 use Auth;
 use Excel;
+use App\Station;
 use App\Booking;
 use App\Airport;
 use App\Passenger;
@@ -29,25 +30,33 @@ class BookingController extends Controller
 
     public function index()
     {
-      $booking = Booking::with('users')->paginate(5);
+      $booking = Booking::with('users','transaction')->paginate(5);
+      foreach($booking as $pas)
+      // dd($pas->transaction->status);
       return view('admin.booking.index', compact('booking'));
     }
-
     public function edit($id)
     {
-      $booking = Booking::find($id);
-      $detail  = DetailBooking::where('booking_id', $id)->get();
-      foreach($detail as $pass){
-      $passengers = Passenger::where('detail_booking_id', $pass->id)->get();}
-      return view('admin.booking.edit',compact('booking','detail','pass'));
+      $booking = Booking::with('transaction')->whereId($id)->first();
+      $booking->transaction->update([
+        'status' => 1
+        ]);
+
+       return redirect('admin/booking')->with('edit','s'); 
+
+    }
+
+    public function tiket($id,$email)
+    {
+      return view('Mails.tiket');
+      // Mail::to($email)-send(new MailTiket);
     }
 
     public function destroy($id)
     {
-      $customer = Customer::find($id);
-      $customer->delete();
 
-      return redirect('admin.booking.index');
+      Booking::Destroy($id);
+      return redirect('admin/booking')->with('delete','d');
     }
 
     public function search(Request $request)
@@ -106,6 +115,7 @@ class BookingController extends Controller
 
     public function order(Request $request)
     {
+
       $model = "";
       $class = "";
       $vehicle = $request->vehicle;
@@ -211,7 +221,7 @@ class BookingController extends Controller
                   }
                 }
               });
-              return redirect('user/booking/'.Auth::user()->id);
+              return redirect('my_order/'.Auth::user()->id);
         }else{
           abort(404);
         }
@@ -235,11 +245,6 @@ class BookingController extends Controller
       }
     }
 
-    public function test()
-    {
-      return view('test.testView');
-    }
-
     public function export($type)
     {
         $data = Passenger::all();
@@ -256,18 +261,15 @@ class BookingController extends Controller
         })->download($type);
     }
 
-    public function import(Request $request)
-    {
-      $path = $request->file('import_file')->getRealPath();
-      $data = Excel::load($path, function($reader){
-
-      })->get();
-      return $data;
-    }
-
     public function plane()
     {
         $airport = Airport::all();
         return view('user.plane',compact('airport'));
+    }
+
+    public function train()
+    {
+        $station = Station::all();
+        return view('user.train',compact('station'));
     }
 }

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
-{
+{   
+    public $guarded = [];
     public function booking()
     {
-      return $this->belongsTo('App\Models\Booking');
+      return $this->belongsTo('App\Booking');
     }
 }

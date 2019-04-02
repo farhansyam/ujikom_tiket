@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,13 @@ class UserController extends Controller
     public function index()
     {
         //
-       return view('admin.users.index',['users' => User::all()]);
+       return view('admin.users.index',['users' => User::whereRole(1)->get()]);
+    }
+
+    public function petugas()
+    {
+        //
+       return view('admin.users.petugas',['users' => User::whereRole(2)->get()]);
     }
 
     /**
@@ -116,11 +123,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        Transportasi::where('id_transportasi',$id)->delete();
        $deleteUser =  User::destroy($id);
-       Transportasi::where('id_transportasi',$id)->delete();
 
-       return redirect('admin/user');
+       return redirect('admin/user')->with('delete','ss');
 
     }
 

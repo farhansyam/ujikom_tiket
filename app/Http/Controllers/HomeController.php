@@ -6,24 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // $this->middleware('auth')    ;
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
-    {
-
+        {
         $user = auth::user();
         if ($user) {
           if ($user->role == 3) {
@@ -39,10 +23,5 @@ class HomeController extends Controller
         else {
           return view('user.index');
         }
-    }
-
-    public function test()
-    {
-      return view('auth.test');
     }
 }

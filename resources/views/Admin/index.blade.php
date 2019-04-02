@@ -1,132 +1,158 @@
 @extends('layouts.app')
-<head>
-  <style media="screen">
-  .border-left-primary {
-  border-left: .25rem solid #4e73df!important;
-}
-.pb-2, .py-2 {
-  padding-bottom: .5rem!important;
-}
-.pt-2, .py-2 {
-  padding-top: .5rem!important;
-}
-.h-100 {
-  height: 16%!important;
-
-}
-.shadow {
-  -webkit-box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
-  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
-}
-.card {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid #e3e6f0;
-  border-radius: .35rem;
-}
-*, ::after, ::before {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-user agent stylesheet
-div {
-  display: block;
-}
-.flex-column {
-  -webkit-box-orient: vertical!important;
-  -webkit-box-direction: normal!important;
-  -ms-flex-direction: column!important;
-  flex-direction: column!important;
-}
-body {
-  margin: 0;
-  font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #858796;
-  text-align: left;
-  background-color: #fff;
-}
-  </style>
-</head>
 @section('content')
-  <div class="container">
-      <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <ul class="breadcrumb">
-              <li class="active">Admin</li>
-
-            </ul>
-
-              <div class="panel panel-default">
-                  <div class="panel-heading">Dashboard</div>
-
-                  <div class="panel-body">
-                      <div class="panel-body">
-                        <div class="col-md-4">
-                          <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                              <h2>&nbsp;Users : {{$users}}</h2>
-                              <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                  <i class="fa-2x text-gray-300"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                              <h2>&nbsp; Pesanan</h2>
-                              <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                  <i class="fa-2x text-gray-300"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                              <h2>&nbsp; Pesawat:{{$pesawat}}</h2>
-                              <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                  <i class="fa-2x text-gray-300"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <br><br><br><br><br><br><br>
-                        <div class="col-md-4">
-                          <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                              <h2>&nbsp;Kereta : {{$kereta}}</h2>
-                              <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                  <i class="fa-2x text-gray-300"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
+<div class="row">
+    <div class="col-lg-2" style="    background-color: #00c0ef !important;
+    margin-left: 33px;">
+              <!-- small box -->
+              <div class="small-box">
+                <div class="inner">
+                  <h3 style="color:white"><b>{{$user}}</b></h3>
+                  <p style="color:white">Users</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
               </div>
-          </div>
-      </div>
-  </div>
+            </div>
+    <div class="col-lg-2" style="    background-color: #00efcb !important;
+    margin-left: 10px;">
+              <!-- small box -->
+              <div class="small-box">
+                <div class="inner">
+                  <h3 style="color:white"><b>{{$plane}}</b></h3>
+                  <p style="color:white">Pesawat</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+              </div>
+            </div>
+    <div class="col-lg-2" style="    background-color: #ebf350 !important;
+    margin-left: 10px;">
+              <!-- small box -->
+              <div class="small-box">
+                <div class="inner">
+                  <h3 style="color:white"><b>{{$train}}</b></h3>
+                  <p style="color:white">Kereta</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+              </div>
+            </div>
+    <div class="col-lg-2" style="    background-color: #ff8710 !important;
+    margin-left: 10px;">
+              <!-- small box -->
+              <div class="small-box">
+                <div class="inner">
+                  <h3 style="color:white"><b>{{$partner}}</b></h3>
+                  <p style="color:white">partner</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+              </div>
+            </div>
+</div>
+<br>
+ <div class="col-md-8">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title">Penjualan 2019</h4>
+                                <p class="category">Penjualan Tiket Pesawat dan Kereta</p>
+                            </div>
+                            <div class="content">
+                                <div id="ChartTiket" class=""></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                       <div class="card ">
+                            <div class="header">
+                                <h4 class="title">Notifikasi</h4>
+                                <p class="category">Notifikasi Sistem Tiketik</p>
+                            </div>
+                            <div class="content">
+                                <div class="footer">
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                    </div>
+                                </div>
+                                <div class="table-full-width">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                                <td class="td-actions text-right">
+                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 @endsection
+@push('scripts')
+  <script src="{{asset('js/highchart.js')}}"></script>
+  <script>
+  Highcharts.chart('ChartTiket', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Grafik Penjualan Tiket'
+    },
+    
+    xAxis: {
+        categories: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Tiket'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} Tiket</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+},
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: {!!json_encode($chart['series'])!!}
+
+});</script>
+@endpush

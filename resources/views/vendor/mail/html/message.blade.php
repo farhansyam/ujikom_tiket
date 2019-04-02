@@ -1,7 +1,7 @@
 @component('mail::layout')
     {{-- Header --}}
     @slot('header')
-        @component('mail::header', ['url' => "Go - Tic"])
+        @component('mail::header', ['url' => "Tik-ketik"])
             {{ config('app.name') }}
         @endcomponent
     @endslot

@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
                 <ul class="breadcrumb">
                   <li class="active">Admin</li>
 
@@ -19,7 +17,8 @@
                        Pencarian
                         <input type="text" v-bind:style="{width: '20%' }" v-model="pencarian" class="form-control" />
                         </div>
-                        <table class="table" border="0" width="200">
+                        <br>
+                        <table class="table table-responsive table-bordered" border="0" width="200">
                           <thead>
                             <tr>
                               <td>No</td>
@@ -60,8 +59,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
   {{-- </div> --}}
 @endsection

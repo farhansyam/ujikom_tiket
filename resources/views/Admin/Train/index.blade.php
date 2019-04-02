@@ -2,9 +2,7 @@
 
   @section('content')
 
-      <div class="container">
-            <div class="row">
-              <div class="col-md-10 col-md-offset-1">
+              <div class="col-md-12">
                   <ul class="breadcrumb">
                     <li class="active">Admin</li>
                     <li class="active">Train</li>
@@ -27,6 +25,7 @@
                                 <thead>
                                   <tr>
                                       <th>No.</th>
+                                      <th>Partner</th>
                                       <th>Nama Kerata</th>
                                       <th>Ekonomi</th>
                                       <th>Bisnis</th>
@@ -41,6 +40,7 @@
                                   @foreach($train as $data)
                                       <tr>
                                           <td>{{ $loop->iteration }}</td>
+                                          <td class="center"><img src="{{asset('storage/images/'.$data->Train->logo)}}" height="100" width="100"></td>
                                           <td>{{ $data->train_name }}</td>
                                           <td>{{ $data->eco_seat }}</td>
                                           <td>{{ $data->bus_seat }}</td>
@@ -49,12 +49,12 @@
                                           <td>IDR {{ number_format($data->TrainFare['bus_seat']) }}</td>
                                           <td>IDR {{ number_format($data->TrainFare['exec_seat']) }}</td>
                                           <td>
-                                              <form action="{{ url('admin/train', $data->id) }}" method="post">
-                                                  {{ csrf_field() }}
-                                                  {{ method_field('delete') }}
-                                                  <a href="{{ url('admin/train/'.$data->id.'/edit') }}" class=" btn btn-sm btn-hijau fa fa-edit"></a>
-                                                  <button class="btn btn-sm btn-oren fa fa-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"></button>
-                                              </form>
+                                   <form class="" action="{{url('admin/train')}}/{{$data->id}}" method="post">
+                                      <input type="hidden" name="_method" value="DELETE">
+                                      <a href="{{url('admin/train')}}/{{$data->id}}/edit"> <button href="asd" type="button" name="button" class="btn btn-hijau btn btn-sm"><i class="fa fa-edit"></i></button>  </a>
+                                      <button type="submit" name="button" class="btn btn-oren btn btn-sm"> <i class="fa fa-trash"></i> </button>
+                                      @csrf
+                                    </form>
                                           </td>
                                       </tr>
                                   @endforeach
@@ -65,8 +65,6 @@
                       </div>
                   </div>
               </div>
-          </div>
-      </div>
 
     {{-- </div> --}}
 

@@ -1,14 +1,40 @@
 <?php
 
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
-use App\PlaneSchedule;
+use DB;
 use App\User;
+use App\PlaneSchedule;
 use App\DetailBooking;
 
 class Booking extends Model
 {
+     public static function getJumlahBookingPerBulan(){
+ 
+ 
+    	$bulan_awal = 1;
+    	$bulan_akhir = date('m');
+ 
+    	$category = [];
+ 
+    	$series[0]['name'] = 'Pesawat';
+    	$series[1]['name'] = 'Kereta';
+    	
+ 
+ 
+    	$j = 0;
+    	for ($i=$bulan_awal; $i <= $bulan_akhir ; $i++) { 
+        
+    		$series[0]['data'][] = Self::whereVehicle('plane')->where(DB::raw('MONTH(created_at)'),'like', $i.'%')->count();
+    		$series[1]['data'][] = Self::whereVehicle('train')->where(DB::raw('MONTH(created_at)'),'like', $i.'%')->count();
+    	}
+ 
+      // dd($series);
+    	return ['series' => $series];
+ 
+ 
+    }
+
     protected $fillable = ['user_id','booking_date','status','vehicle','schedule_id'];
     public function detail_booking()
     {
@@ -25,12 +51,12 @@ class Booking extends Model
 
     public function users()
     {
-      return $this->belongsTo('App\User','user_idp');
+      return $this->belongsTo('App\User','user_id');
     }
 
     public function transaction()
     {
-      return $this->hasOne('App\Transaction');
+      return $this->hasOne('App\Transaction','booking_id');
     }
 
     //

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\DetailBooking;
+use App\DetailBooking;
 
 class Passenger extends Model
 {
@@ -12,6 +12,6 @@ class Passenger extends Model
 
     public function detail_booking()
     {
-      return $this->hasOne('App\Models\DetailBooking');
+      return $this->hasOne('App\DetailBooking');
     }
 }
