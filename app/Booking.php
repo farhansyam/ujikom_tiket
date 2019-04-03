@@ -40,11 +40,11 @@ class Booking extends Model
     {
       return $this->hasOne('App\DetailBooking');
     }
-    public function scheP()
+    public function scheduleP()
     {
       return $this->hasOne('App\PlaneSchedule', 'id', 'schedule_id');
     }
-    public function scheT()
+    public function scheduleT()
     {
       return $this->hasOne('App\TrainSchedule', 'id', 'schedule_id');
     }

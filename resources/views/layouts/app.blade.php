@@ -53,6 +53,14 @@
     color: #fff;
     background-color: #19dabd;
 }
+.btn-birmud {
+    color: #fff;
+    background-color: #bcf3ea;
+}
+.btn-tsc {
+    color: #fff;
+    background-color: #15f7c0;
+}
     </style>
 </head>
 <body>
@@ -115,8 +123,8 @@
                                     <p>Data Users</p>
                                 </a>
                             </li>
-            <li>
-                <a href="maps.html">
+            <li class="{{set_active('laporan')}}">
+            <a href="{{url('admin/laporan')}}">
                     <i class="pe-7s-copy-file"></i>
                     <p>Laporan</p>
                 </a>
@@ -133,9 +141,9 @@
                         <p>Pesawat</p>
                     </a>
                 </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-car"></i>
+                <li class="{{set_active('train.index')}}">
+                    <a href="{{url('admin/train')}}">
+                        <i class="fa fa-train"></i>
                         <p>Kereta</p>
                     </a>
                 </li>
@@ -173,6 +181,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand btn-tsc" href="{{url('admin/airport')}}">Bandara</a>
+                    <a class="navbar-brand btn-birmud" href="{{url('admin/station')}}">Stasiun</a>
                 </div>
                 <div class="collapse navbar-collapse">
 

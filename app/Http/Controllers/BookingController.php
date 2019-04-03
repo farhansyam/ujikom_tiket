@@ -173,7 +173,7 @@ class BookingController extends Controller
         $total = $request->totalCount;
         $seat = $request->seat;
         $date = Carbon::now();
-        $expire = $date->addHours(8);
+        $expire  = $date->addHours(8);
 
         if ($vehicle == 'plane'){
           $modelV = $this->plane;

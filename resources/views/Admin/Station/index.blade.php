@@ -2,9 +2,7 @@
 
   @section('content')
 
-      <div class="container">
-            <div class="row">
-              <div class="col-md-8 col-md-offset-2">
+              <div class="col-md-12">
                   <ul class="breadcrumb">
                     <li class="active">Admin</li>
                     <li class="active">Stasiun</li>
@@ -13,16 +11,9 @@
                       <div class="panel-heading">
                         Stasiun
                       </div>
-
                       <div class="panel-body">
-
                           <div class="table-responsive">
                             <a href="{{url('admin/station/create')}}" class="btn btn-primary">Tambah Stasiun</a>
-                          <div align="right">
-                         Pencarian
-                          <input type="text" v-bind:style="{width: '20%' }" v-model="pencarian" class="form-control" />
-                          </div>
-
                               <table class="table" border="0" width="200">
                                 <thead>
                                   <tr>
@@ -41,11 +32,11 @@
                                           <td>{{ $data->station_name }}</td>
                                           <td>{{ $data->city }}</td>
                                           <td>
-                                              <form action="{{ url('admin/stasiun', $data->id) }}" method="post">
+                                              <form action="{{ url('admin/station', $data->id) }}" method="post">
                                                   {{ csrf_field() }}
-                                                  {{ method_field('delete') }}
-                                                  <a href="{{ url('admin/stasiun/'.$data->id.'/edit') }}" class=" btn btn-sm btn-hijau fa fa-edit"></a>
-                                                  <button class="btn btn-sm btn-oren fa fa-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"></button>
+                                                  <input type="hidden" name="_method" value="DELETE">
+                                                  <a href="{{ url('admin/station/'.$data->id.'/edit') }}" class=" btn btn-sm btn-hijau"><i class="fa fa-edit"></i></a>
+                                                  <button class="btn btn-sm btn-oren" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"><i class="fa fa-trash"></i></button>
                                               </form>
                                           </td>
                                       </tr>
@@ -57,9 +48,4 @@
                       </div>
                   </div>
               </div>
-          </div>
-      </div>
-
-    {{-- </div> --}}
-
   @endsection

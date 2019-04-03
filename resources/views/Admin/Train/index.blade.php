@@ -16,11 +16,6 @@
 
                           <div class="table-responsive">
                             <a href="{{url('admin/train/create')}}" class="btn btn-primary">Tambah Kereta</a>
-                          <div align="right">
-                         Pencarian
-                          <input type="text" v-bind:style="{width: '20%' }" v-model="pencarian" class="form-control" />
-                          </div>
-
                               <table class="table" border="0" width="200">
                                 <thead>
                                   <tr>

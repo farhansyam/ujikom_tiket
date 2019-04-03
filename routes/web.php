@@ -20,6 +20,7 @@ Route::post('/order','BookingController@order')->name('order');
 Route::group(['middleware' => ['auth','verified']],function(){
 
   Route::get('/profile', 'UserController@profile');
+  Route::get('/my_order/{id}', 'UserController@myOrder');
   Route::post('/booking/fixOrder','BookingController@fixOrder');
 
 });
@@ -51,7 +52,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
        // ATM
        Route::resource('atm', 'AtmController');
 
-      Route::resource('/tes','test');
+      Route::get('laporan','laporanController@index')->name('laporan');
 
       Route::get('schedule',function()
       { 

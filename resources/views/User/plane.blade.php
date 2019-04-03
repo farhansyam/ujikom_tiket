@@ -79,20 +79,20 @@ h6{
         <div class="row">
           <div class="col-lg-3 col-sm-4">
             <div class="form-group has-default">
-              <label for="asal">Asal</label>
+              <label for="asal">Asal Bandara</label>
               <select class="select2 item_id form-control" name="from_code" id="from_code">
                 @foreach ($airport as $data)
-                  <option value="{{$data->code}}">{{$data->city}}</option>
+                  <option value="{{$data->code}}">{{$data->airport_name}}</option>
                 @endforeach
               </select>
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
             <div class="form-group has-default">
-              <label for="tujuan">Tujuan</label>
+              <label for="tujuan">Bandara Tujuan</label>
               <select class="select2 item_id form-control" name="destination_code" id="destination_code">
                 @foreach ($airport as $data)
-                  <option value="{{$data->code}}">{{$data->city}}</option>
+                  <option value="{{$data->code}}">{{$data->airport_name }}</option>
                 @endforeach
               </select>
             </div>

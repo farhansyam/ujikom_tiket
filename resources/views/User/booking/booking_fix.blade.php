@@ -1,9 +1,25 @@
 @extends('layouts.master_ui')
-@section('tittle')
-<title>{{config('app.name')}} - Pemesanan</title>
-@stop
 @section('content')
+  <div class="header-blue" data-parallax="false"
 
+    style="background-color:#99caac"
+  >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <div class="brand">
+              <br><br><br><br><br>
+              <h1>Pemesanan Tiket</h1>
+                <img src='{{asset('images/pc10.jpg')}}' height="400">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<br>
+    <div class="main main-raised">
+      <div class="section section-basic">
+              
 <center>
   <head><h2>PEMESANAN TIKET</h2></head>
 </center>
@@ -17,17 +33,15 @@
   <input type="hidden" name="class" value="{{$class}}">
 
   <div class="container">
-    <div class="row">
       <div class="col-md-6">
-        <div class="row">
-          <div class="panel panel-info">
-            <div class="panel-heading">Metode pembayaran</div>
-            <div class="panel-body">
-              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="card card-info">
+            <div class="card-heading">Metode pembayaran</div>
+            <div class="card-body">
+              <div class="card-group" id="accordion" role="tablist" aria-multiselectable="true">
                 @foreach ($bank as $b)
                     <input type="radio" name="bank" value="{{$b->bank}}">{{$b->bank}}
-                    <div id="{{$b->bank}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                      <div class="panel-body">
+                    <div id="{{$b->bank}}" class="card-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
                         <div class="form-group">
                           <input type="radio" name="bank" value="{{$b->bank}}">
                         </div>
@@ -52,59 +66,54 @@
                   </div>
                 @endforeach
               </div>
-            </div>
-          </div>
-          <div class="panel panel-info">
-            @if ($vehicle == 'plane')
-              @for ($i=1; $i <= $totalCount - $total['baby']; $i++)
-                <div class="panel-heading">Data penumpang {{$i}}</div>
-                <div class="panel-body">
+              <div class="card card-info">
+                @if ($vehicle == 'plane')
+                @for ($i=1; $i <= $totalCount - $total['baby']; $i++)
+                <div class="card-heading">Data penumpang {{$i}}</div>
+                <div class="card-body">
                       <div class="form-group">
-                          <label for="exampleInputemail1">Nama Lengkap</label>
-                          <input type="text" class="form-control" name="name[]" placeholder="Nama Lengkap">
+                          <input required type="text" class="form-control" name="name[]" placeholder="Nama Lengkap">
                       </div>
-                </div>
+                    </div>
               @endfor
             @elseif($vehicle == 'train')
-              @for ($i=1; $i <= $totalCount; $i++)
-                <div class="panel-heading">Data penumpang {{$i}}</div>
-                <div class="panel-body">
-                      <div class="form-group">
-                          <label for="exampleInputemail1">Nama Lengkap</label>
-                          <input type="text" class="form-control" name="name[]" placeholder="Nama Lengkap">
-                      </div>
+            @for ($i=1; $i <= $totalCount; $i++)
+                <div class="card-heading">Data penumpang {{$i}}</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <input required type="text" class="form-control" name="name[]" placeholder="Nama Lengkap">
+                  </div>
                 </div>
-              @endfor
-            @endif
-          </div>
-        </div>
-      </div>
-      <div class="col-md-5 col-md-offset-1">
-        <div class="row">
-          <div class="panel panel-info">
+                @endfor
+                @endif
+              </div>
+              </div>
+      <div class="col-md-6">
+          <div class="card card-info">
             @foreach ($schedule as $s)
               @php
                  $unique = $s->unique_code;
                  $fareTotal += $s->$seat * $totalCount + $unique;
               @endphp
               <input type="hidden" name="id[]" value="{{$s->id}}">
-              <div class="panel-heading">{{$s->from}} ke {{$s->destination}}</div>
-              <div class="panel-body">
+              <div class="card-heading">{{$s->from}} ke {{$s->destination}}</div>
+              <div class="card-body">
                 <img src="images/kai-logo.jpg" alt="">
                 @if ($vehicle == 'plane')
-                  <p>{{$s->plane_name}}</p>
-                  <p>{{$class}}</p>
+                  <p>Pesawat: {{$s->plane_name}}</p>
+                  <p>Kelas :{{$class}}</p>
                 @elseif($vehicle == 'train')
                   <p>{{$s->train_name}}</p>
                   <p>{{$class}}</p>
                 @endif
                 <p>{{ date('d F Y H:i:s', strtotime($s->boarding_time)) }}</p>
                 <p>IDR {{number_format($s->$seat * $totalCount +$s->unique_code, 2, ',','.')}}</p>
+                <p>* Harap Transfer Sesuai Total Agar mempermudah Verifikasi</p>
               </div>
             @endforeach
           </div>
-          <div class="panel panel-info">
-          <div class="panel-heading">
+          <div class="card card-info">
+          <div class="card-heading">
               @if ($vehicle == 'plane')
                 <p class="col-md-12">({{$total['adult']}} Dewasa | {{$total['child']}} Anak - anak | {{$total['baby']}} Bayi)</p>
               @elseif ($vehicle == 'train')
@@ -120,9 +129,18 @@
               @endif
           </div>
         </div>
-      </div>
     </div>
-  </div>
+            </div>
+
 </form>
 <hr class="half-rule">
+
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class='content_shadow'></div>
+      </div>
+
+
 @endsection

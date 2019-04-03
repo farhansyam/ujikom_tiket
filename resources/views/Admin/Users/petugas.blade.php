@@ -12,11 +12,6 @@
                     <div class="panel-body">
 
                         <div class="table-responsive">
-
-                        <div align="right">
-                       Pencarian
-                        <input type="text" v-bind:style="{width: '20%' }" v-model="pencarian" class="form-control" />
-                        </div>
                         <br>
                         <table class="table table-responsive table-bordered" border="0" width="200">
                           <thead>
