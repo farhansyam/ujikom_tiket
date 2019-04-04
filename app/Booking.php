@@ -38,7 +38,7 @@ class Booking extends Model
     protected $fillable = ['user_id','booking_date','status','vehicle','schedule_id'];
     public function detail_booking()
     {
-      return $this->hasOne('App\DetailBooking');
+      return $this->hasOne('App\DetailBooking','');
     }
     public function scheduleP()
     {

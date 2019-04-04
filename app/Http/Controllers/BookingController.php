@@ -245,21 +245,7 @@ class BookingController extends Controller
       }
     }
 
-    public function export($type)
-    {
-        $data = Passenger::all();
-        return Excel::create('passenger_'.date('d-m-Y'),function($excel) use ($data){
-          $excel->sheet('test', function($sheet) use($data){
-            $sheet->cell('A1', function($cell) {$cell->setValue('Nama');   });
-              if (!empty($data)) {
-                foreach ($data as $key => $value) {
-                    $i= $key+2;
-                    $sheet->cell('A'.$i, $value['name']);
-                }
-              }
-          });
-        })->download($type);
-    }
+   
 
     public function plane()
     {
@@ -272,4 +258,5 @@ class BookingController extends Controller
         $station = Station::all();
         return view('user.train',compact('station'));
     }
+    
 }

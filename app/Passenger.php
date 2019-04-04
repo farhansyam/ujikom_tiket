@@ -12,6 +12,6 @@ class Passenger extends Model
 
     public function detail_booking()
     {
-      return $this->hasOne('App\DetailBooking');
+      return $this->hasOne('App\DetailBooking','id','detail_booking_id');
     }
 }

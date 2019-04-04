@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
        Route::resource('atm', 'AtmController');
 
       Route::get('laporan','laporanController@index')->name('laporan');
+      Route::get('laporan/laporanExel','laporanController@laporanExel')->name('laporan');
 
       Route::get('schedule',function()
       { 

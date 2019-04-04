@@ -14,6 +14,7 @@
         "laravel/framework": "5.7.*",
         "laravel/socialite": "^4.0",
         "laravel/tinker": "^1.0",
+        "maatwebsite/excel": "^3.1",
         "yajra/laravel-auditable": "^2.0"
     },
     "require-dev": {
