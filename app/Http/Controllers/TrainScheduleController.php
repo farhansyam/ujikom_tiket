@@ -11,23 +11,7 @@ use App\Train;
 use App\Station;
 
 class TrainScheduleController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-      $schedule = TrainSchedule::with('station','train')->paginate(5);
-      return view('admin.train.schedule.index',compact('schedule'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{   
     public function create()
     {
 
@@ -36,12 +20,7 @@ class TrainScheduleController extends Controller
       return view('admin.train.schedule.create',compact('train','station'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
       $destination = Station::find($request->destination);
@@ -60,7 +39,7 @@ class TrainScheduleController extends Controller
       $trainschedule->save();
 
 
-      return redirect('admin/schedule_train/')->with('create','a');
+      return redirect('admin/schedule')->with('create','a');
     }
 
 
@@ -104,7 +83,7 @@ class TrainScheduleController extends Controller
       $trainschedule->boarding_time     = $request->boarding_time;
       $trainschedule->duration          = $request->duration;
       $trainschedule->save();
-      return redirect('admin/schedule_train')->with('edit','a');
+      return redirect('admin/schedule')->with('edit','a');
     }
 
 }

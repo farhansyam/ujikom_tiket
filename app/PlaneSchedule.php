@@ -23,7 +23,6 @@ class PlaneSchedule extends Model
       $dataSchedule = DB::table('plane_schedules')
         ->join('planes', 'planes.id', '=', 'plane_schedules.plane_id')
         ->join('plane_fares', 'plane_fares.plane_id','=','plane_schedules.plane_id')
-        ->join('partner','partner.id','=','')
         ->select('plane_schedules.id',
                 'plane_schedules.from',
                 'plane_schedules.destination',

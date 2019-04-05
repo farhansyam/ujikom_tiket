@@ -4,7 +4,7 @@
     <script type="text/javascript">
     $('.dataB').hide();
     $('.type').change(function(){
-      if ($(this).val() == 'pp') {
+      if ($(this).val() == 'rt') {
         $('.dataB').show();
         // $('.set6').set('.col-lg-6 col-sm-4 dataB');
       }else{
@@ -111,7 +111,7 @@ h6{
               <label for="Perjalanan">Perjalanan</label>
               <select class="form-control type" name="type" id="type">
                 <option value="st">Satu Kali</option>
-                <option value="pp">Pulang Pergi</option>
+                <option value="rt">Pulang Pergi</option>
               </select>
             </div>
           </div>
@@ -163,7 +163,7 @@ h6{
           <div class="col-lg-3 col-sm-4 dataB set6">
             <div class="form-group">
               <div class="input-group">
-                <input type="text" class="form-control datetimepicker" value="" placeholder="Tanggal Berangkat">
+                <input type="date" name="dataB" class="form-control" value="">
               </div>
             </div>
           </div>

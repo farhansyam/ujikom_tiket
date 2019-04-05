@@ -155,7 +155,7 @@ body .content_shadow {
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand">
-            <h1>Tik-Ketik.</h1>
+            <h1>Go Tiket.</h1>
             <h3>Pesan Tiket Sekarang Menluncur Kemudian</h3>
           </div>
         </div>

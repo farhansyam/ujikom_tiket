@@ -39,7 +39,7 @@
       <div class="navbar-translate">
         <a class="navbar-brand" href="{{url('/')}}">
           <i class="fa fa-ticket-alt"></i>
-          TIK-KETIK
+          Go Tiket
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>

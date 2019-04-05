@@ -53,12 +53,9 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
        Route::resource('atm', 'AtmController');
 
       Route::get('laporan','laporanController@index')->name('laporan');
-      Route::get('laporan/laporanExel','laporanController@laporanExel')->name('laporan');
+      Route::get('laporan/laporanExcel','laporanController@laporanExel')->name('laporan');
 
-      Route::get('schedule',function()
-      { 
-        return view('admin.schedule.index_schedule');
-      })->name('jadwal');
+      Route::get('schedule','PlaneScheduleController@index')->name('jadwal');
       //  Data Booking
         Route::resource('booking','BookingController');
 

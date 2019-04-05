@@ -32,6 +32,7 @@
       <div class="section section-basic">
         <div class="container">
             <div class="row">
+              <div class="col-md-12">
               @if ($schedule->isEmpty())
                 <h1>Maaf Tidak Ada jadwal atau Sudah Penuh</h1>
                 @else
@@ -45,7 +46,7 @@
                         <th>
                           <tr>
                           <td>No.</td>
-                          <td>Maskapai</td>
+                          {{-- <td>Maskapai</td> --}}
                           <td>Asal</td>
                           <td>Tujuan</td>
                           <td>Keberangkatan</td>
@@ -62,7 +63,7 @@
                         @foreach ($schedule as $data)
                           <tr>
                           <td>{{$loop->iteration}}</td>
-                          <td class="center"><img src="{{asset('storage/images/'.$data->Partner->logo)}}" height="100" width="100"></td>
+                          {{-- <td class="center"><img src="{{asset('storage/images/'.$data->Partner->logo)}}" height="100" width="100"></td> --}}
                           <td>{{$data->from}}</td>
                           <td>{{$data->destination}}</td>
                           <td>{{$data->boarding_time}}</td>
@@ -116,6 +117,7 @@
                   </form>
 
               @endif
+            </div>
             </div>
         </div>
         <div class='content_shadow'></div>

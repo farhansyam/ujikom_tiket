@@ -23,7 +23,6 @@ class PartnerController extends Controller
     {
             $data = $this->validate($request,[
             'nama' => 'min:3',
-            'logo' => 'mimes:jpeg'
             ]);
             
             $nama = time().'.jpg';

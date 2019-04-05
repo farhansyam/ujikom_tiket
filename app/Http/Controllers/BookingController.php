@@ -104,7 +104,7 @@ class BookingController extends Controller
           $scheduleG = $model::findSchedule($request->from_code, $request->destination_code, $request->date, $seat, count($total));
           $scheduleB = $model::findSchedule($request->destination_code, $request->from_code, $request->dateB, $seat, count($total));
           // return $scheduleB;
-          return view('booking.bookingRound', compact('scheduleG', 'scheduleB', 'vehicle','type','total', 'seat'));
+          return view('user.booking.hasil_cari_2', compact('scheduleG', 'scheduleB', 'vehicle','type','total', 'seat'));
         }else{
           abort(404);
         }
