@@ -3,17 +3,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invoice #{{ $bookings }}</title>
+    <title>Laporan Go Tiket </title>
+
+      <style>
+          
+          table {
+    border-collapse: collapse;
+    border: 1px solid red;
+    margin-bottom: 1em;
+    width: auto;
+}
+ table thead tr td {
+    background-color: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    min-width: 0.6em;
+    padding: 5px;
+    text-align: left;
+    vertical-align: top;
+    font-weight: bold;
+}
+table tbody tr td {
+    border: 1px solid #DDDDDD;
+    min-width: 0.6em;
+    padding: 5px;
+    vertical-align: top;
+}
+tbody tr.even td {
+    background-color: transparent;
+}      tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+    </style>
 </head>
 <body>
     <div class="header">
-        <h3>Laporan Go Tiket</h3>
-        <p></p>
+        <h3>Laporan Booking Tiket</h3>
+    </div>
+        </table>
     </div>
     <div class="page">
-        <table class="layout display responsive-table">
+        <table class="layout display responsive-table" border="0">
             <thead>
-                <tr>
+                <tr class="">
                     <th>#</th>
                     <th>Kode Booking</th>
                     <th>Atas Nama</th>
@@ -21,7 +52,6 @@
                     <th>Tipe Transportasi</th>
                     <th>Asal</th>
                     <th>Tujuan</th>
-                    <th>Tanggal</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +74,6 @@
                        <td>{{ $row->scheduleP->from }}</td>
                        <td>{{ $row->scheduleP->destination }}</td>
                        @endif
-                       <td>{{ $row->created_at }}</td>
                 </tr>
 ​
                 @empty

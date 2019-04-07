@@ -78,27 +78,31 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="" class="simple-text">
+                    @if (Auth::user()->role == 3)
                     Administrator
+                    @else
+                    Petugas
+                    @endif
                 </a>
             </div>
 
             <ul class="nav">
                 @if(Auth::user()->role == 2)
                 <li class="{{set_active('admin')}}">
-                    <a href="{{url('admin')}}">
+                    <a href="{{url('petugas')}}">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="{{set_active('booking.index')}}">
-                        <a href="{{('booking')}}">
+                        <a href="{{url('petugas/booking')}}">
                                 <i class="pe-7s-cash"></i>
                                 <p>Data Booking</p>
                             </a>
                         </li>
                         
             <li>
-                <a href="maps.html">
+                <a href="{{url('petugas/laporan')}}">
                     <i class="pe-7s-copy-file"></i>
                     <p>Laporan</p>
                 </a>

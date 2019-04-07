@@ -61,8 +61,8 @@
             </a>
           </li>
           <li class="nav-item">
-           <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" data-original-title="Help ?">
-             <i class="fas fa-question-circle" style="font-size:20px"></i>
+           <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="{{url('paymentVerify')}}" data-original-title="Verifikasi Pembayaran">
+             <i class="fas fa-money-check-alt" style="font-size:20px"></i>
            </a>
           </li>
            @if (auth::user())
@@ -134,6 +134,7 @@
   <script src="{{asset('js/popper.min.js')}}" type="text/javascript"></script>
   <script src="{{asset('js/bootstrap-material-design.min.js')}}" type="text/javascript"></script>
   <script src="{{asset('js/moment.min.js')}}"></script>
+  <script src="{{asset('js/sweetalert.min.js')}}"></script>
 
     <script src="{{asset('js/bootstrap-datetimepicker.js')}}"></script>
     <script src="{{asset('js/nouislider.min.js')}}"></script>
@@ -158,7 +159,15 @@
 
   </script>
   @stack('scripts')
-  
+  @if (session('kirim'))
+    <script>
+        swal({
+                title: "Sukses Kirim Data",
+                icon: "success",
+            });
+
+    </script>
+@endif
 </body>
 
 </html>

@@ -3,12 +3,12 @@
 
 // User Belum Login
 Route::get('/', 'HomeController@index');
-
-Route::get('/test','HomeController@test');
-
 Route::get('/airport','AirportController@cek');
 Route::get('/plane','BookingController@plane');
 Route::get('/train','BookingController@train');
+Route::get('/paymentVerify','BookingController@verify');
+Route::post('/kirim','BookingController@kirim')->name('kirim');
+Route::post('/cekBC','BookingController@check')->name('cekBC');
 Route::post('/search','BookingController@search')->name('search');
 Route::get('/order',function()
 {
@@ -18,7 +18,6 @@ Route::post('/order','BookingController@order')->name('order');
 // User sudah Login
 
 Route::group(['middleware' => ['auth','verified']],function(){
-
   Route::get('/profile', 'UserController@profile');
   Route::get('/my_order/{id}', 'UserController@myOrder');
   Route::post('/booking/fixOrder','BookingController@fixOrder');
@@ -54,13 +53,14 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
 
       Route::get('laporan','laporanController@index')->name('laporan');
       Route::get('laporan/laporanExcel','laporanController@laporanExel')->name('laporan');
+      Route::get('laporan/laporanPDF','laporanController@laporanPDF')->name('laporan');
 
       Route::get('schedule','PlaneScheduleController@index')->name('jadwal');
       //  Data Booking
         Route::resource('booking','BookingController');
 
         // Test tiket
-        Route::get('tiket','BookingController@tikettest');
+        Route::get('detail/{id}','BookingController@detail');
         // Kirim Tiket
         Route::get('booking/{id}/{email}/{vehicle}/tiket','BookingController@tiket');
 
@@ -69,10 +69,6 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
        Route::resource('partner', 'PartnerController');
       
 // Ujicoba
-Route::get('/user/view', 'UserController@index');
-Route::get('/user/search', 'UserController@search');
-Route::get('/user/{id}/konfirmasi', 'UserController@konfirmasiUser');
-Route::resource('user','UserController');
 
 });
 
@@ -83,6 +79,12 @@ Route::resource('user','UserController');
 // Kuhusus Petugas
 Route::group(['prefix' => 'petugas','middleware' => 'Petugas'],function(){
   Route::get('/', 'PetugasController@index')->name('petugas');
+  Route::resource('booking','BookingController');
+  Route::get('booking/{id}/{email}/{vehicle}/tiket','BookingController@tiket');
+      Route::get('laporan','laporanController@index')->name('laporan');
+      Route::get('laporan/laporanExcel','laporanController@laporanExel')->name('laporan');
+      Route::get('laporan/laporanPDF','laporanController@laporanPDF')->name('laporan');
+
 });
 
 Auth::routes(['verify' => true]);

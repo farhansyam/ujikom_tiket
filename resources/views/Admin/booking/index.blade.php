@@ -38,22 +38,27 @@
                                     <td>{{ $data->booking_code }}</td>
                                     <td>{{ $data->vehicle }}</td>
                                     <td>{{ $data->bill }}</td>
-                                    <td>@if($data->transaction->status == 0)
+                                    <td>@if($data->transaction->status == 1)
                                         <a style="background-color:red;color:white">Belum Bayar</a>
-                                        @else
+                                        @elseif($data->transaction->status == 2)
                                         <a style="background-color:greenyellow;color:white">Di Bayar</a>
+                                        @else
+                                        <a style="background-color:red;color:white">Belum Bayar</a>
                                         @endif
                                     </td>
                                           <td>{{ $data->expire }}</td>
                                           <td>
-                                              <form action="{{ url('admin/booking', $data->id) }}" method="post">
-                                                  {{ csrf_field() }}
-                                                  {{ method_field('delete') }}
-                                                  <button class="btn btn-sm btn-oren" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"><i class="fa fa-trash"></i></button>
-                                                  @if($data->transaction->status == 0)
-                                                  <a href="{{ url('admin/booking/'.$data->id.'/edit') }}" class=" btn btn-sm btn-biru"><i class=" fa fa-check"></i></a>
-                                                  @else
-                                                  <a href="{{ url('admin/booking/'.$data->users->id.'/'.$data->users->email.'/'.$data->vehicle.'/tiket') }}" class=" btn btn-sm btn-hijau"><i class=" fa fa-ticket-alt"></i></a>
+                                                <form action="{{ url('admin/booking', $data->id) }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('delete') }}
+                                                    <button type="button" name="button" class="btn btn-biru btn btn-sm" onclick="bukajendela('{{url('admin/detail')}}/{{$data->id}}')"><i class="fa fa-eye"></i></button>
+                                                    <button class="btn btn-sm btn-oren" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"><i class="fa fa-trash"></i></button>
+                                                    @if($data->transaction->status == 1)
+                                                    <a href="{{ url('admin/booking/'.$data->id.'/edit') }}" class=" btn btn-sm btn-biru"><i class=" fa fa-check"></i></a>
+                                                  @elseif($data->transaction->status == 0)
+                                                    <a href="{{ url('admin/booking/'.$data->id.'/edit') }}" class=" btn btn-sm btn-biru"><i class=" fa fa-check"></i></a>
+                                                    @else
+                                                    <a href="{{ url('admin/booking/'.$data->users->id.'/'.$data->users->email.'/'.$data->vehicle.'/tiket') }}" class=" btn btn-sm btn-hijau"><i class=" fa fa-ticket-alt"></i></a>
                                                   @endif
                                               </form>
                                           </td>
@@ -67,5 +72,9 @@
                   </div>
               </div>
 
-
+<script language="JavaScript">
+        function bukajendela(url) {
+         window.open(url, "window_baru", "width=800,height=500,left=120,top=10,resizable=1,scrollbars=1");
+        }
+        </script>
   @endsection

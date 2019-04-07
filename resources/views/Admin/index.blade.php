@@ -55,11 +55,11 @@
             </div>
 </div>
 <br>
- <div class="col-md-8">
+ <div class="col-md-12">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Penjualan 2019</h4>
-                                <p class="category">Penjualan Tiket Pesawat dan Kereta</p>
+                                <h4 class="title">Booking 2019</h4>
+                                <p class="category">Data Booking Tiket Pesawat dan Kereta</p>
                             </div>
                             <div class="content">
                                 <div id="ChartTiket" class=""></div>
@@ -67,42 +67,6 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                       <div class="card ">
-                            <div class="header">
-                                <h4 class="title">Notifikasi</h4>
-                                <p class="category">Notifikasi Sistem Tiketik</p>
-                            </div>
-                            <div class="content">
-                                <div class="footer">
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
-                                <div class="table-full-width">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                </td>
-                                                <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
 @endsection
 @push('scripts')
   <script src="{{asset('js/highchart.js')}}"></script>
@@ -112,7 +76,7 @@
         type: 'column'
     },
     title: {
-        text: 'Grafik Penjualan Tiket'
+        text: 'Grafik Booking Tiket'
     },
     
     xAxis: {

@@ -50,7 +50,7 @@ class ReportPenumpang implements FromView, WithEvents, ShouldAutoSize
                     ],
                 ];
                 //CELL TERAKAIT AKAN MENGGUNAKAN STYLE DARI $styleArray
-                $event->sheet->getStyle('A9:E9')->applyFromArray($styleArray);
+                $event->sheet->getStyle('A9:H9')->applyFromArray($styleArray);
 
  
                 //FORMATTING STYLE UNTUK CELL TERKAIT
@@ -63,10 +63,10 @@ class ReportPenumpang implements FromView, WithEvents, ShouldAutoSize
             },
         ];
     }
-
     public function view(): View
     {
         $bookings = Booking::with('users','scheduleT','scheduleP')->get();
+        // dd($bookings);
         return view('admin.Lbooking',compact('bookings'));
     }
 }

@@ -3,9 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
-use PDF;
 use Auth;
-use Excel;
 use Illuminate\Support\Facades\Mail;
 use App\Station;
 use App\Booking;
@@ -42,21 +40,8 @@ class BookingController extends Controller
     public function index()
     {
       $booking = Booking::with('users','transaction')->paginate(5);
-      foreach($booking as $pas)
-      // dd($pas->transaction->status);
       return view('admin.booking.index', compact('booking'));
     }
-    public function edit($id)
-    {
-      $booking = Booking::with('transaction')->whereId($id)->first();
-      $booking->transaction->update([
-        'status' => 1
-        ]);
-
-       return redirect('admin/booking')->with('edit','s'); 
-
-    }
-
     public function tiket($id,$email,$vehicle)
     {    
       
@@ -81,6 +66,16 @@ class BookingController extends Controller
 
       Booking::Destroy($id);
       return redirect('admin/booking')->with('delete','d');
+    }
+
+    public function edit($id)
+    {
+        $transaksi = Transaction::whereBookingId($id)->first();
+        $transaksi->update([
+            'status' => 2
+        ]);
+
+        return redirect('admin/booking')->with('edit','s');
     }
 
     public function search(Request $request)
@@ -252,24 +247,6 @@ class BookingController extends Controller
       }
     }
 
-    public function payment(Request $request, $id)
-    {
-      $request->request->add(['status'=> 1]);
-      $data = $this->validate($request,[
-        'sender_name' => 'required',
-        'ammount' => 'required|integer',
-        'status' => 'required'
-      ]);
-      $booking = Booking::find($id);
-      if ($booking->bill == $request->ammount) {
-        Transaction::where('id', $id)->update($data);
-        return redirect('user/booking/'.Auth::user()->id)->with('success', 'Pembayaran berhasil');
-      }else{
-        return back()->with('error', 'Jumlah uang tidak sesuai');
-      }
-    }
-
-   
 
     public function plane()
     {
@@ -282,5 +259,50 @@ class BookingController extends Controller
         $station = Station::all();
         return view('user.train',compact('station'));
     }
-    
+
+    public function verify()
+    {
+        return view('user.verifyPayment');
+    }
+
+    public function kirim(Request $request)
+    {
+            $nama = time().'.jpg';
+            $request->file('gambar')->storeAs('public/images',$nama);
+
+        $booking = Booking::whereBookingCode($request->booking_code)->first();
+        $transaksi = Transaction::where('booking_id',$booking->id)->first();
+        $transaksi->update([
+          'receipt' => $nama,
+          'status' => 2
+        ]);
+        return redirect('/paymentVerify')->with('kirim','s');
+      }
+
+     function check(Request $request)
+    {
+     if($request->get('booking_code'))
+     {
+      $code = $request->get('booking_code');
+      $data = Booking::where('booking_code',$code)->count();
+      if($data > 0)
+      {
+       echo 'unique';
+      }
+      else
+      {
+       echo 'not';
+      }
+     }
+     else {
+       echo "g ada";
+     }
+    }
+
+    public function detail($id)
+    {
+      $booking = Booking::whereId($id)->first();
+      $transaksi =Transaction::where('booking_id',$booking->id)->first();
+      return view('admin.booking.detail',compact('transaksi'));
+    }
 }
