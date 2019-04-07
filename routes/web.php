@@ -59,8 +59,10 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
       //  Data Booking
         Route::resource('booking','BookingController');
 
+        // Test tiket
+        Route::get('tiket','BookingController@tikettest');
         // Kirim Tiket
-        Route::get('booking/{id}/{email}/tiket','BookingController@tiket');
+        Route::get('booking/{id}/{email}/{vehicle}/tiket','BookingController@tiket');
 
         Route::get('petugas','UserController@petugas')->name('petugas');
       // Partner

@@ -47,8 +47,7 @@ class TrainScheduleController extends Controller
     public function destroy($id)
     {
       TrainSchedule::destroy($id);
-      Alert::success('Berhasil menghapus data !');
-      return redirect('admin/train');
+      return redirect('admin/schedule')->with('delete','s');
     }
 
     public function show($id)

@@ -6,6 +6,7 @@ use DB;
 use PDF;
 use Auth;
 use Excel;
+use Illuminate\Support\Facades\Mail;
 use App\Station;
 use App\Booking;
 use App\Airport;
@@ -14,7 +15,9 @@ use Carbon\Carbon;
 use App\BankAccount;
 use App\Transaction;
 use App\DetailBooking;
-
+use App\PlaneSchedule;
+use App\TrainSchedule;
+use App\Mail\MailTiket;
 
 class BookingController extends Controller
 {
@@ -26,6 +29,14 @@ class BookingController extends Controller
       $this->train = "App\Train";
       $this->trainFare = "App\TrainFare";
       $this->trainSchedule = "App\TrainSchedule";
+    }
+
+    public function tikettest()
+    {
+        $booking = Booking::whereUserId(4)->whereVehicle('plane')->first();
+        $detail = DetailBooking::whereBookingId($booking->id)->first();
+        $passenger = Passenger::whereDetailBookingId($detail->id)->get();
+        return view('Mails.tiket',compact('booking','detail','passenger'));
     }
 
     public function index()
@@ -46,10 +57,23 @@ class BookingController extends Controller
 
     }
 
-    public function tiket($id,$email)
-    {
-      return view('Mails.tiket');
-      // Mail::to($email)-send(new MailTiket);
+    public function tiket($id,$email,$vehicle)
+    {    
+      
+        $booking = Booking::whereUserId($id)->whereVehicle($vehicle)->first();
+        if ($vehicle == 'plane') {
+            $jadwalP = PlaneSchedule::whereId($booking->schedule_id)->with('plane')->first();
+            $detail = DetailBooking::whereBookingId($booking->id)->first();
+            $jadwalT = TrainSchedule::whereId(1)->first();
+            Mail::to($email)->send(new MailTiket($booking,$detail,$jadwalP,$jadwalT));
+
+          }
+        else {
+            $jadwalT = TrainSchedule::whereId($booking->schedule_id)->with('train')->first();
+            $detail = DetailBooking::whereBookingId($booking->id)->first();
+            $jadwalP = PlaneSchedule::whereId(1)->first();
+            Mail::to($email)->send(new MailTiket($booking,$detail,$jadwalP,$jadwalT));
+          }
     }
 
     public function destroy($id)

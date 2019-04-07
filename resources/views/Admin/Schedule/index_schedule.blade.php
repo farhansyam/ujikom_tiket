@@ -1,16 +1,15 @@
 @extends('layouts.app')
 @section('content')
-   <div class="col-md-6">
-                  <ul class="breadcrumb">
+<div class="col-md-12">
+  <ul class="breadcrumb">
                     <li class="active">Admin</li>
-                    <li class="active">Jadwal Kereta</li>
-
+                    <li class="active">Jadwal Rute</li>
                   </ul>
+</div>
+   <div class="col-md-6">                 
                   <div class="panel panel-default">
                       <div class="panel-heading">Kelola Jadwal Kereta</div>
-
                       <div class="panel-body">
-
                           <div class="table-responsive">
                           <a href="{{url('admin/schedule_train/create')}}"><button type="button" name="button" class="btn btn-primary">Tambah Jadwal</button></a>
                           <table class="table" border="0" width="200">
@@ -54,16 +53,9 @@
         </script>
     @endpush
               <div class="col-md-6">
-                  <ul class="breadcrumb">
-                    <li class="active">Admin</li>
-                    <li class="active">Jadwal Pesawat</li>
-
-                  </ul>
                   <div class="panel panel-default">
                       <div class="panel-heading">Kelola Jadwal Penerbangan</div>
-
                       <div class="panel-body">
-
                           <div class="table-responsive">
                           <a href="{{url('admin/schedule_plane/create')}}"><button type="button" name="button" class="btn btn-primary">Tambah Jadwal</button></a>
                           <table class="table" border="0" width="200">

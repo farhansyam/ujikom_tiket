@@ -21,7 +21,8 @@ class PlaneSchedule extends Model
     {
 
       $dataSchedule = DB::table('plane_schedules')
-        ->join('planes', 'planes.id', '=', 'plane_schedules.plane_id')
+      ->join('planes', 'planes.id', '=', 'plane_schedules.plane_id')
+      ->join('partners', 'partners.id', '=', 'planes.maskapai')
         ->join('plane_fares', 'plane_fares.plane_id','=','plane_schedules.plane_id')
         ->select('plane_schedules.id',
                 'plane_schedules.from',
@@ -29,6 +30,7 @@ class PlaneSchedule extends Model
                 'plane_schedules.boarding_time',
                 'plane_schedules.duration',
                 'planes.plane_name',
+                'partners.logo',
                 'plane_fares.'.$seat,
                 'plane_fares.unique_code')
         ->where([
@@ -37,6 +39,7 @@ class PlaneSchedule extends Model
         ['plane_schedules.boarding_time', 'LIKE', '%'.$date.'%'],
         ['plane_schedules.'.$seat, '>=', $total]
       ])->get();
+
       return $dataSchedule;
     }
     public static function findWithPrice(Array $id, $seat)

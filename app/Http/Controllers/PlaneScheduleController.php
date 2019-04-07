@@ -50,7 +50,7 @@ class PlaneScheduleController extends Controller
     public function destroy($id)
     {
       PlaneSchedule::destroy($id);
-      return redirect('admin/plane')->with('delete','a');
+      return redirect('admin/schedule')->with('delete','a');
     }
 
     public function show($id)
@@ -86,7 +86,7 @@ class PlaneScheduleController extends Controller
       $planeschedule->boarding_time     = $request->boarding_time;
       $planeschedule->duration          = $request->duration;
       $planeschedule->save();
-      return redirect('admin/schedule_plane')->with('edit','a');
+      return redirect('admin/schedule')->with('edit','a');
     }
 
 }

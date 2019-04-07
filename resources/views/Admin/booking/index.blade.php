@@ -53,7 +53,7 @@
                                                   @if($data->transaction->status == 0)
                                                   <a href="{{ url('admin/booking/'.$data->id.'/edit') }}" class=" btn btn-sm btn-biru"><i class=" fa fa-check"></i></a>
                                                   @else
-                                                  <a href="{{ url('admin/booking/'.$data->id.'/'.$data->users->email.'/tiket') }}" class=" btn btn-sm btn-hijau"><i class=" fa fa-ticket-alt"></i></a>
+                                                  <a href="{{ url('admin/booking/'.$data->users->id.'/'.$data->users->email.'/'.$data->vehicle.'/tiket') }}" class=" btn btn-sm btn-hijau"><i class=" fa fa-ticket-alt"></i></a>
                                                   @endif
                                               </form>
                                           </td>

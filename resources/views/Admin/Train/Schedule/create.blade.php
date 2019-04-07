@@ -92,7 +92,7 @@
                   <div class="form-group">
                     <label for="code">Asal :</label>
                       <select class="select2 form-control" name="station_id" required>
-                        <option value="0" disabled selected>Pilih Stasiun asal</option>
+                        <option value="" disabled selected>Pilih Stasiun asal</option>
                         @foreach($station as $key)
                           <option value="{{ $key->id }}">{{ $key->station_name }}</option>
                         @endforeach
@@ -104,7 +104,7 @@
                   <div class="form-group">
                     <label for="code">Tujuan :</label>
                       <select class="select2 form-control" name="destination" required>
-                        <option value="0" disabled selected>Pilih Stasiun tujuan</option>
+                        <option value="" disabled selected>Pilih Stasiun tujuan</option>
                         @foreach($station as $key)
                           <option value="{{ $key->id }}">{{ $key->station_name }}</option>
                         @endforeach
@@ -120,8 +120,8 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="code">Nama Kereta :</label>
-                      <select class="form-control" name="train_id">
-                        <option value="0">Pilih Kereta</option>
+                      <select class="form-control" name="train_id" required>
+                        <option value="">Pilih Kereta</option>
                         @foreach($train as $key)
                           <option value="{{ $key->id }}">{{ $key->train_name }}</option>
                         @endforeach

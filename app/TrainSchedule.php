@@ -21,6 +21,7 @@ class TrainSchedule extends Model
     {
       $dataSchedule = DB::table('train_schedules')
         ->join('trains', 'trains.id', '=', 'train_schedules.train_id')
+        ->join('partners', 'partners.id', '=', 'trains.kereta')
         ->join('train_fares', 'train_fares.train_id','=','train_schedules.train_id')
         ->select('train_schedules.id',
                 'train_schedules.from',
@@ -28,6 +29,7 @@ class TrainSchedule extends Model
                 'train_schedules.boarding_time',
                 'train_schedules.duration',
                 'trains.train_name',
+                'partners.logo',
                 'train_fares.'.$seat,
                 'train_fares.unique_code')
         ->where([

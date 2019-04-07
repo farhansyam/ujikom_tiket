@@ -53,19 +53,19 @@
               <tr>
                 @if ($vehicle == 'plane')
                   <td></td>
+                  <th>Maskapai</th>
                   <th>Pesawat</th>
                   <th>Pergi</th>
                   <th>Durasi</th>
                   <th>Tiba</th>
-                  <th>Gate</th>
                   <th>/orang</th>
                 @elseif($vehicle == 'train')
                   <td></td>
+                  <th>Partner</th>
                   <th>Kereta</th>
                   <th>Pergi</th>
                   <th>Durasi</th>
                   <th>Tiba</th>
-                  <th>Peron</th>
                   <th>/orang</th>
                 @endif
               </tr>
@@ -83,7 +83,8 @@
                       </div>
                     </td>
                     @if ($vehicle == 'plane')
-                      <td>{{$s->plane_name}}</td>
+                    <td class="center"><img src="{{asset('storage/images/'.$s->logo)}}" height="100" width="100"></td> 
+                    <td>{{$s->plane_name}}</td>
                       @php
                         $duration = $s->duration;
                         $range    = strtotime($s->boarding_time ."+$duration hours");
@@ -92,15 +93,15 @@
                       <td>{{ $duration }} jam</td>
                       <td>{{ date('H:i:s', $range) }}</td>
                     @elseif($vehicle == 'train')
+                      <td class="center"><img src="{{asset('storage/images/'.$s->logo)}}" height="100" width="100"></td>
                       <td>{{$s->train_name}}</td>
                       @php
-                        $duration = date('h',$s->duration);
+                        $duration = $s->duration;
                         $range    = strtotime($s->boarding_time ."+$duration hours");
                       @endphp
                       <td>{{ date('H:i:s', strtotime($s->boarding_time)) }}</td>
                       <td>{{ $duration }} jam</td>
                       <td>{{ date('H:i:s', $range) }}</td>
-                      <td>{{ $s->platform }}</td>
                     @endif
                     <td>IDR {{ number_format($s->$seat,2, ".", ",") }}</td>
                   </tr>
@@ -124,6 +125,7 @@
               <tr>
                 @if ($vehicle == 'plane')
                   <td></td>
+                  <th>Maskapai</th>
                   <th>Pesawat</th>
                   <th>Pergi</th>
                   <th>Durasi</th>
@@ -131,11 +133,11 @@
                   <th>/orang</th>
                 @elseif($vehicle == 'train')
                   <td></td>
+                  <th>Partner</th>
                   <th>Kereta</th>
                   <th>Pergi</th>
                   <th>Durasi</th>
                   <th>Tiba</th>
-                  <th>Peron</th>
                   <th>/orang</th>
                 @endif
               </tr>
@@ -153,6 +155,7 @@
                       </div>
                     </td>
                     @if ($vehicle == 'plane')
+                      <td class="center"><img src="{{asset('storage/images/'.$s->logo)}}" height="100" width="100"></td>
                       <td>{{$s->plane_name}}</td>
                       @php
                         $duration = date('h',$s->duration);
@@ -163,7 +166,8 @@
                       <td>{{ date('H:i:s', $range) }}</td>
                       <td>{{ $s->gate }}</td>
                     @elseif($vehicle == 'train')
-                      <td>{{$s->train_name}}</td>
+                    <td class="center"><img src="{{asset('storage/images/'.$s->logo)}}" height="100" width="100"></td>
+                    <td>{{$s->train_name}}</td>
                       @php
                         $duration = date('h',$s->duration);
                         $range    = strtotime($s->boarding_time ."+$duration hours");
