@@ -41,30 +41,7 @@ style="background-color:#99caac"
               <div class="card-body">
                 <div class="card-group" id="accordion" role="tablist" aria-multiselectable="true">
                   @foreach ($bank as $b)
-                  <input type="radio" name="bank" value="{{$b->bank}}">{{$b->bank}}
-                  <div id="{{$b->bank}}" class="card-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="card-body">
-                      <div class="form-group">
-                        <input type="radio" name="bank" value="{{$b->bank}}">
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-3">
-                          <p>Atas nama</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p>: {{$b->account_name}}</p>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-3">
-                          <p>No. Rekening</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p>: {{$b->account_number}}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <input type="radio" name="bank" value="{{$b->bank}}">&nbsp;{{$b->bank}} - {{$b->account_name}} - No Rek: {{$b->account_number}}
                 </div>
                 @endforeach
               </div>
